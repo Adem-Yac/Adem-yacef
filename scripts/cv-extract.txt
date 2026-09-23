@@ -1,0 +1,193 @@
+
+
+======== Adem_Yacef (Français).pdf ========
+
+--- page 1 ---
+Adem Yacef
+Développeur web mobile
+yacefadem03@gmail.com
+ 
++213-773-10-10-94
+ 
+github Adem yac
+ 
+Profil
+Développeur web et mobile polyvalent. Passionné par l'innovation, je crée des solutions logiciels efficaces et centrés sur 
+l'utilisateur.
+Diplome et formation
+10/2022 – 09/2025 Technicien Supérieur en Développement Web et Mobile, Institut de Formation d'Ouled Fayet
+04/2025 – 09/2025 Stage Pratique, SARL Myndall
+09/2025 – 12/2025 Stage Développeur ,Web JustSell
+06/2026 – 08/2026 Formation Développeur Mobile Flutter ,BrainerX
+07/2026 – 08/2026 Travaille chez KATECH, Optimisation Digitale du Service Marketing
+Langage de programmation maitresse
+Front-end :
+•HTML/CSS,
+•JavaScript
+•ReactJS
+•NextJs
+Back-end :
+•Laravel
+•php
+•NextJs
+Mobile :
+•Dart, Flutter
+Bases de données:
+•MySQL
+Projet Réalisé freelance
+Gestion Employé
+•Création d'une plateforme de gestion des employés en PHP et MySQL.
+•Gestion des informations du personnel, postes et services.
+•Suivi des présences et des performances.
+•Optimisation des processus administratifs.
+Gestion des Ressources Humaines et Pointage ZKteco
+•Conception et développement d'une solution complète de gestion des ressources humaines avec Laravel Filament.
+•Intégration des appareils de pointage ZKTeco pour la collecte automatique des présences.
+•Gestion des employés, des congés, des absences, des horaires et des services.
+•Développement de tableaux de bord statistiques et de rapports RH détaillés.
+•Mise en place d'un système sécurisé de gestion des rôles et permissions.
+•Maintenance, optimisation et évolution des fonctionnalités métiers.
+Développement d’un site vitrine Next.js pour TIBIGOO, plateforme de livraison de repas à Conakry.
+•Intégration du tracking GA4/Firebase et des événements analytics.
+•Développement de formulaires connectés à Firebase (newsletter, livreurs, restaurateurs).
+•Mise en place de l’automatisation des réseaux sociaux via Meta API, webhooks, UTM et templates de messages.
+•Développement d’un pipeline ETL Firebase →  Google Sheets pour l’analyse des KPI et la préparation Power BI.
+•Organisation du projet par domaines (analytics, social, support, mobile, warehouse) avec 86 tests unitaires et une 
+checklist de recette.
+Kaizen Delivery — Application Flutter de livraison
+•Développement d’une application mobile Flutter multi-rôles (magasin / livreur) pour la gestion de livraisons last-mile
+•Architecture feature-first avec Riverpod, GoRouter, Dio et stockage sécurisé (Flutter Secure Storage)
+•Implémentation d’écrans métier : dashboard, colis, QR code, carte, portefeuille, transactions, notifications
+•Conception UI/UX : header personnalisé, navigation arrondie, thèmes dynamiques, FR / AR / EN (RTL)
+•Intégration API REST, géolocalisation, scan QR, upload d’images et gestion de session auth
+•Optimisation démarrage (auth cache, redirection splash, timeouts) et build APK release Android en anglich
+Noor Al-Iman — Application mobile Flutter
+•Développement d’une application mobile Flutter modulaire avec architecture Feature-Based et gestion d’état Bloc/Cubit.
+•Intégration de Firebase Auth, Cloud Firestore et Google Sign-In.
+•Développement des fonctionnalités Coran, Hadiths, Douas et horaires de prière avec géolocalisation GPS.
+•Intégration d’API REST, notifications locales (Adhan/Takbir) et lecture audio native Android.
+•Mise en place du support FR / EN / AR, RTL, mode sombre et UX mobile responsive.
+•Gestion complète de l’authentification, des permissions, du profil utilisateur et de la persistance locale.
+A d e m  Y a c e f
+
+======== Adem_Yacef(English).pdf ========
+
+--- page 1 ---
+Adem Yacef
+Web & Mobile Developer
+yacefadem03@gmail.com
+ 
++213-773-10-10-94
+ 
+Adem yac
+ 
+Summary
+Versatile Web and Mobile Developer passionate about innovation and building efficient, user-centered software solutions. 
+Experienced in developing web applications, mobile apps, and business management systems using modern technologies and best 
+development practices.r.
+Technical Skills
+Front-end
+•HTML/CSS
+•JavaScript
+•ReactJS
+•NextJs
+MobileDart, Flutter
+Back-end
+•Laravel
+•php
+•NextJs
+Bases de donnéesMySQL
+Education & Training
+10/2022 – 09/2025 Higher Technician in Web & Mobile Development, Institute of Ouled Fayet
+04/2025 – 09/2025 Practical Internship, SARL Myndall
+09/2025 – 12/2025 Web Developer Intern, Web JustSell
+06/2026 – 08/2026 Flutter Mobile Developer Training – BrainerX, BrainerX
+07/2026 – 08/2026 Digital Marketing Service Optimization – KATECH, KATECH
+Freelance Projects
+Employee Management System
+•Developed an employee management platform using PHP and MySQL.
+•Managed employee information, departments, and positions.
+•Implemented attendance and performance tracking.
+•Improved administrative workflow efficiency.
+HR Management & ZKTeco Attendance System
+•Designed and developed a complete Human Resources Management solution using Laravel Filament.
+•Integrated ZKTeco attendance devices for automatic attendance collection.
+•Managed employees, leave requests, absences, schedules, and departments.
+•Developed HR dashboards and statistical reports.
+•Implemented secure role and permission management.
+•Maintained and enhanced business features.
+showcase website for TIBIGOO, a food delivery platform in Conakry.
+•Integrated GA4/Firebase tracking and analytics events.
+•Developed forms connected to Firebase for newsletters, delivery drivers, and restaurants.
+•Implemented social media automation using Meta API, webhooks, UTM tracking, and message templates.
+•Built an ETL pipeline from Firebase to Google Sheets for KPI analysis and Power BI preparation.
+•Structured the project by domains (analytics, social, support, mobile, warehouse) with 86 unit tests and a final testing checklist.
+Kaizen Delivery – Flutter Delivery Application, Application Flutter de livraison
+•Developed a Flutter multi-role mobile application (store / delivery driver) for last-mile delivery management.
+•Implemented a feature-first architecture using Riverpod, GoRouter, Dio, and secure storage with Flutter Secure Storage.
+•Developed business screens including dashboard, parcels, QR codes, maps, wallet, transactions, and notifications.
+•Designed modern UI/UX with a custom header, rounded navigation, dynamic themes, and French / Arabic / English localization 
+with RTL support.
+•Integrated REST APIs, geolocation, QR code scanning, image uploads, and authentication/session management.
+•Optimized application startup with authentication caching, splash-screen redirection, and request timeouts.
+•Built and generated a release APK for Android.
+Noor Al-Iman – Flutter Islamic Application, Application mobile Flutter
+•Developed a modular Flutter mobile application using Feature-Based Architecture and Bloc/Cubit for state management.
+•Integrated Firebase Authentication, Cloud Firestore, and Google Sign-In.
+•Developed Quran, Hadiths, Duas, and prayer time features with GPS-based location services.
+•Integrated REST APIs, local Adhan/Takbir notifications, and native Android audio playback.
+•Implemented FR / EN / AR localization, RTL support, dark mode, and responsive mobile UX.
+•Managed authentication, permissions, user profiles, and local data persistence.
+y a c e f a d e m 0 3 @ g m a i l . c o m
+
+======== Adel Yazid Amara _ Développeur Full-Stack.pdf ========
+
+--- page 1 ---
+DÉVELOPPEUR WEB / BACKEND
+Je suis Adel Yazid Amara, développeur basé à Alger. Je construis des sites
+web, des applications et des outils métier pour les entreprises et les
+organisations.
+Adel Yazid Amara
+Développeur Web / Backend
+© 2026 Adel Yazid Amara. Tous droits réservés.
+À propos de moi
+Qui je suis
+Je construis les choses de bout en bout : les pages que vos clients voient, et tout ce qui, en
+dessous, les maintient rapides, sécurisés et fiables. Je tiens à un travail solide et facile à
+exploiter pour son propriétaire, pas seulement à quelque chose de beau le jour du lancement.
+Ce que j'apporte
+›Livraison de bout en bout : planification, design, développement, déploiement et maintenance.
+›Stack : WordPress, WooCommerce, PHP/Laravel, Python, Vue.js.
+›Bases solides : formulaires, livraison d'e-mails, performance, SEO, sauvegardes.
+Projets
+Projets livrés pour des entreprises et des organisations : refonte du site vitrine de SARL MyndAll,
+lancement d'un supermarché en ligne complet pour AlBaraka Supermarket. Chaque projet est
+présenté sous forme d'étude de cas dans la section Projets.
+Voir mes projets →
+TECHNOLOGIES
+WordPress
+ PHP / Laravel
+Python / Frappe / Django
+ VueJS
+NextJS
+ WooCommerce
+ Elementor
+HTML / CSS
+ Responsive design
+Git
+FORMATION
+BTS en informatique
+INA (Institut National de l'Audiovisuel)
+2025
+Baccalauréat, Sciences
+expérimentales
+Lycée Messaoud Belkadi
+2019
+CERTIFICATIONS
+IBM SkillsBuild Software Engineering for
+Web Developers Certificate
+ME RETROUVER EN LIGNE
+LinkedIn ↗
+GitHub ↗
+Facebook ↗
+Amara Software Solutions EN FRAccueil À propos Services Projets Contact
