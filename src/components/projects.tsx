@@ -18,7 +18,7 @@ function ProjectCard({ project }: { project: Project }) {
             alt={project.title[locale]}
             fill
             unoptimized
-            className="object-cover object-center transition duration-300 group-hover:scale-[1.03]"
+            className="object-cover object-top transition duration-300 group-hover:scale-[1.03]"
             sizes="(max-width: 768px) 100vw, 25vw"
           />
         </div>
@@ -61,10 +61,12 @@ export function Projects() {
   const [filter, setFilter] = useState<"all" | ProjectKind>("all");
   const web = useMemo(() => projects.filter((p) => p.kind === "web"), []);
   const mobile = useMemo(() => projects.filter((p) => p.kind === "mobile"), []);
+  const visible = filter === "web" ? web : filter === "mobile" ? mobile : [...web, ...mobile];
+  const heading = filter === "web" ? t.webSection : filter === "mobile" ? t.mobileSection : t.filterAll;
 
   return (
-    <section id="projets" className="mx-auto w-full max-w-7xl scroll-mt-24 px-4 py-24 lg:px-6">
-      <div className="mb-10 flex flex-col items-center text-center">
+    <section id="projets" className="mx-auto w-full max-w-7xl scroll-mt-24 px-4 py-14 sm:py-20 lg:px-6 lg:py-24">
+      <div className="mb-8 flex flex-col items-center text-center">
         <span className="font-code text-xs font-bold tracking-widest text-blue-600 uppercase">
           {t.projectsKicker}
         </span>
@@ -75,40 +77,30 @@ export function Projects() {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           {(
             [
-              ["all", t.filterAll],
-              ["web", t.filterWeb],
-              ["mobile", t.filterMobile],
+              ["all", t.filterAll, web.length + mobile.length],
+              ["web", t.filterWeb, web.length],
+              ["mobile", t.filterMobile, mobile.length],
             ] as const
-          ).map(([key, label]) => (
+          ).map(([key, label, count]) => (
             <button
               key={key}
               type="button"
+              aria-pressed={filter === key}
               onClick={() => setFilter(key)}
-              className={`rounded-full border px-4 py-1.5 font-code text-xs font-semibold transition ${
+              className={`cursor-pointer rounded-full border px-5 py-2 font-code text-xs font-semibold transition ${
                 filter === key
                   ? "border-blue-600 bg-blue-600 text-white"
                   : "border-slate-200 bg-white text-slate-600 hover:border-blue-300"
               }`}
             >
-              {label}
+              {label} ({count})
             </button>
           ))}
         </div>
       </div>
 
-      {filter !== "mobile" ? (
-        <div>
-          <h3 className="mb-5 font-display text-xl font-bold text-slate-900">{t.webSection}</h3>
-          <ProjectGrid items={web} />
-        </div>
-      ) : null}
-
-      {filter !== "web" ? (
-        <div className={filter === "all" ? "mt-16" : ""}>
-          <h3 className="mb-5 font-display text-xl font-bold text-slate-900">{t.mobileSection}</h3>
-          <ProjectGrid items={mobile} />
-        </div>
-      ) : null}
+      <h3 className="mb-5 font-display text-xl font-bold text-slate-900">{heading}</h3>
+      <ProjectGrid items={visible} />
     </section>
   );
 }

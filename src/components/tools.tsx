@@ -9,7 +9,7 @@ const icons = [GitBranch, Laptop, Network, Cloud];
 export function Tools() {
   const { locale, t } = useLocale();
   return (
-    <section id="outils" className="w-full border-y border-slate-200/80 bg-[#f8fafc] py-24">
+    <section id="outils" className="w-full border-y border-slate-200/80 bg-[#f8fafc] py-14 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mb-12 flex flex-col items-center text-center">
           <span className="font-code text-xs font-bold tracking-widest text-violet-600 uppercase">
@@ -26,7 +26,7 @@ export function Tools() {
             return (
               <article
                 key={tool.title.fr}
-                className="rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md sm:p-8"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
                   <Icon size={22} />
