@@ -1,22 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, Code2, Globe } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, Code2, Globe } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
+import { ProjectGallery } from "@/components/project-gallery";
 import { getProject } from "@/data/portfolio";
 
 export function ProjectDetail({ slug }: { slug: string }) {
   const { locale, t } = useLocale();
   const router = useRouter();
   const project = getProject(slug);
-  const [photo, setPhoto] = useState(0);
-
   const shots = project?.gallery ?? [];
   const labels = project?.galleryLabels?.[locale] ?? [];
-  const current = shots[photo] ?? project?.image ?? "";
-  const caption = labels[photo];
   const meta: { label: string; value: string }[] = [];
   if (project?.year) meta.push({ label: t.yearLabel, value: project.year });
   if (project) {
@@ -28,11 +23,6 @@ export function ProjectDetail({ slug }: { slug: string }) {
 
   if (!project) return null;
 
-  const go = (dir: -1 | 1) => {
-    if (!shots.length) return;
-    setPhoto((i) => (i + dir + shots.length) % shots.length);
-  };
-
   const goBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
       router.back();
@@ -42,7 +32,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
   };
 
   return (
-    <article className="mx-auto max-w-6xl px-4 py-16 lg:px-6">
+    <article className="mx-auto max-w-6xl px-4 py-10 sm:py-16 lg:px-6">
       <div className="mb-8 flex flex-wrap items-center gap-3">
         <button
           type="button"
@@ -60,7 +50,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
           {project.kind === "mobile" ? t.kindMobile : t.kindWeb}
         </span>
       </div>
-      <h1 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+      <h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
         {project.title[locale]}
       </h1>
       <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">{project.description[locale]}</p>
@@ -87,66 +77,13 @@ export function ProjectDetail({ slug }: { slug: string }) {
         ) : null}
       </div>
 
-      <div className="mt-10">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="font-code text-xs font-semibold tracking-wide text-slate-500 uppercase">{t.choosePhoto}</p>
-          <p className="font-code text-xs text-slate-400">
-            {t.photoOf} {photo + 1} / {shots.length}
-          </p>
-        </div>
-        <div className="relative h-[min(72vh,740px)] min-h-[420px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-[0_10px_35px_rgba(0,0,0,0.06)]">
-          <Image
-            src={current}
-            alt={caption ?? project.title[locale]}
-            fill
-            unoptimized
-            className="object-contain object-center p-2 sm:p-4"
-            sizes="(max-width: 1024px) 100vw, 1152px"
-            priority
-            quality={95}
-          />
-          {shots.length > 1 ? (
-            <>
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                className="absolute top-1/2 left-3 z-10 -translate-y-1/2 rounded-full border border-white/70 bg-white/90 p-2 text-slate-800 shadow-sm hover:bg-white"
-                aria-label="Previous"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                type="button"
-                onClick={() => go(1)}
-                className="absolute top-1/2 right-3 z-10 -translate-y-1/2 rounded-full border border-white/70 bg-white/90 p-2 text-slate-800 shadow-sm hover:bg-white"
-                aria-label="Next"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </>
-          ) : null}
-        </div>
-        {caption ? <p className="mt-3 text-sm font-medium text-slate-600">{caption}</p> : null}
-        <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
-          {shots.map((src, index) => {
-            const selected = index === photo;
-            return (
-              <button
-                key={src}
-                type="button"
-                onClick={() => setPhoto(index)}
-                className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border-2 bg-slate-100 transition ${
-                  selected ? "border-blue-600 ring-2 ring-blue-200" : "border-slate-200 hover:border-blue-300"
-                }`}
-                aria-pressed={selected}
-                aria-label={labels[index] ?? `${t.photoOf} ${index + 1}`}
-              >
-                <Image src={src} alt="" fill className="object-contain object-top p-0.5" sizes="128px" />
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      <ProjectGallery
+        shots={shots}
+        labels={labels}
+        title={project.title[locale]}
+        choosePhoto={t.choosePhoto}
+        photoOf={t.photoOf}
+      />
 
       <div className="mt-12 grid gap-10 lg:grid-cols-12">
         <div className="space-y-10 lg:col-span-7">
@@ -238,20 +175,11 @@ export function ProjectDetail({ slug }: { slug: string }) {
                 </a>
               ) : null}
               {!project.href && !project.repo ? (
-                <p className="text-sm text-slate-500">{t.live}</p>
+                <p className="text-sm text-slate-500">{t.noPublicLink}</p>
               ) : null}
             </div>
           </div>
         </aside>
-      </div>
-      <div className="mt-14 border-t border-slate-200 pt-8">
-        <button
-          type="button"
-          onClick={goBack}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm hover:border-blue-400 hover:text-blue-700"
-        >
-          <ArrowLeft size={16} /> {t.back}
-        </button>
       </div>
     </article>
   );

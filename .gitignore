@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# local client reviews (seed lives in src/lib/reviews.ts)
+/data/reviews.json
+
 # vercel
 .vercel
 
