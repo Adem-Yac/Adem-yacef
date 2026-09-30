@@ -7,7 +7,7 @@ import { education, experience } from "@/data/portfolio";
 export function TrackRecord() {
   const { locale, t } = useLocale();
   return (
-    <section id="track-record" className="w-full border-y border-slate-200/80 bg-[#f8fafc] py-24">
+    <section id="track-record" className="w-full border-y border-slate-200/80 bg-[#f8fafc] py-14 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mb-12 flex flex-col items-center text-center">
           <span className="font-code text-xs font-bold tracking-widest text-indigo-600 uppercase">
@@ -30,7 +30,7 @@ export function TrackRecord() {
                   <div className="absolute -left-6 top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-blue-500 bg-white">
                     <span className="h-2 w-2 rounded-full bg-blue-500" />
                   </div>
-                  <article className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:border-blue-300">
+                  <article className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:border-blue-300 sm:p-6">
                     <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
                       <span className="rounded-md border border-blue-200/80 bg-blue-50 px-2 py-0.5 font-code text-xs font-bold text-blue-700">
                         {item.dates[locale]}
@@ -62,7 +62,7 @@ export function TrackRecord() {
               {education.map((item) => (
                 <article
                   key={item.title.fr}
-                  className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:border-violet-300"
+                  className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:border-violet-300 sm:p-6"
                 >
                   <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
                     <span className="rounded-md border border-violet-200/80 bg-violet-50 px-2 py-0.5 font-code text-xs font-bold text-violet-700">

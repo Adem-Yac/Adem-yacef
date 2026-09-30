@@ -3,7 +3,7 @@ import { ProjectDetail } from "@/components/project-detail";
 import { getProject, projects } from "@/data/portfolio";
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return [...projects.map((project) => ({ slug: project.slug })), { slug: "moknin" }];
 }
 
 export async function generateMetadata({
@@ -13,9 +13,9 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) return { title: "Adem Yac" };
+  if (!project) return { title: "AdemYac" };
   return {
-    title: `${project.title.fr} | Adem Yac`,
+    title: `${project.title.fr} | AdemYac`,
     description: project.summary.fr,
   };
 }
