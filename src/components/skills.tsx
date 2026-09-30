@@ -9,7 +9,7 @@ const icons = [Code2, Smartphone, Server, Database];
 export function Skills() {
   const { locale, t } = useLocale();
   return (
-    <section id="competences" className="mx-auto w-full max-w-7xl px-4 py-24 lg:px-6">
+    <section id="competences" className="mx-auto w-full max-w-7xl px-4 py-14 sm:py-20 lg:px-6 lg:py-24">
       <div className="mb-12 flex flex-col items-center text-center">
         <span className="font-code text-xs font-bold tracking-widest text-indigo-600 uppercase">
           {t.skillsKicker}
@@ -25,7 +25,7 @@ export function Skills() {
           return (
             <article
               key={skill.title.fr}
-              className="rounded-2xl border border-slate-200/90 bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition hover:shadow-lg"
+              className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition hover:shadow-lg sm:p-8"
             >
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
