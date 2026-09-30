@@ -1,10 +1,11 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Code2, Mail, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 import { social } from "@/data/portfolio";
 import { WhatsAppIcon } from "@/components/brand-icons";
+import { ClientReviews } from "@/components/client-reviews";
 
 export function Contact() {
   const { t, locale } = useLocale();
@@ -52,14 +53,14 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative overflow-x-hidden bg-white py-24">
+    <section id="contact" className="relative overflow-x-hidden bg-white py-14 sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-blue-100/60 blur-[140px]" />
       <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <span className="font-code text-xs font-bold tracking-widest text-violet-600 uppercase">
             {t.contactKicker}
           </span>
-          <h2 className="mt-1 font-display text-3xl font-bold text-slate-900 sm:text-[38px]">
+          <h2 className="mt-1 font-display text-[28px] font-bold text-slate-900 sm:text-3xl sm:text-[38px]">
             {t.contactTitle}
           </h2>
           <p className="mt-2 text-slate-600">{t.contactLead}</p>
@@ -101,19 +102,6 @@ export function Contact() {
                   <span className="block font-code text-sm font-semibold text-slate-900">{t.labelPhone}</span>
                 </span>
               </a>
-              <a
-                href={social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm hover:border-indigo-300"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-indigo-100 bg-indigo-50 text-indigo-600">
-                  <Code2 />
-                </span>
-                <span className="min-w-0">
-                  <span className="block font-code text-sm font-semibold text-slate-900">{t.labelGithub}</span>
-                </span>
-              </a>
             </div>
             <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <MapPin className="shrink-0 text-violet-600" />
@@ -125,7 +113,7 @@ export function Contact() {
           </div>
           <form
             onSubmit={onSubmit}
-            className="relative space-y-4 rounded-2xl border border-slate-200/90 bg-white p-8 shadow-[0_10px_35px_rgba(0,0,0,0.04)] lg:col-span-7"
+            className="relative space-y-4 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_10px_35px_rgba(0,0,0,0.04)] sm:p-8 lg:col-span-7"
           >
             <input
               type="text"
@@ -147,7 +135,7 @@ export function Contact() {
                   minLength={2}
                   maxLength={80}
                   autoComplete="name"
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15 sm:text-sm"
                 />
               </label>
               <label className="space-y-1">
@@ -161,7 +149,7 @@ export function Contact() {
                   required
                   maxLength={120}
                   autoComplete="email"
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15 sm:text-sm"
                 />
               </label>
             </div>
@@ -173,7 +161,7 @@ export function Contact() {
                 id="contact-type"
                 name="projectType"
                 required
-                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-blue-600 focus:bg-white"
+                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white sm:text-sm"
               >
                 {t.types.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -193,7 +181,7 @@ export function Contact() {
                 minLength={5}
                 maxLength={2000}
                 rows={5}
-                className="w-full resize-y rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15"
+                className="w-full resize-y rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15 sm:text-sm"
               />
             </label>
             <button
@@ -215,6 +203,7 @@ export function Contact() {
             ) : null}
           </form>
         </div>
+        <ClientReviews />
       </div>
     </section>
   );

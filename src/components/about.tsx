@@ -1,20 +1,21 @@
 "use client";
 
-import { CheckCircle2, Database, Infinity, Smartphone, Globe } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { CheckCircle2, Database, Globe, Infinity as InfinityIcon, Smartphone } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 
-const icons = [Globe, Smartphone, Database, Infinity];
+const icons: LucideIcon[] = [Globe, Smartphone, Database, InfinityIcon];
 const colors = [
   "text-blue-600 bg-blue-50 border-blue-200",
   "text-indigo-600 bg-indigo-50 border-indigo-200",
   "text-violet-600 bg-violet-50 border-violet-200",
   "text-blue-700 bg-blue-50 border-blue-200",
-];
+] as const;
 
 export function About() {
   const { t } = useLocale();
   return (
-    <section id="a-propos" className="relative w-full border-y border-slate-200/80 bg-[#f8fafc] py-20">
+    <section id="a-propos" className="relative w-full border-y border-slate-200/80 bg-[#f8fafc] py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mb-12 flex flex-col items-center text-center">
           <span className="font-code text-xs font-bold tracking-widest text-blue-600 uppercase">
@@ -50,15 +51,16 @@ export function About() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.aboutCards.map((card, i) => {
-            const Icon = icons[i];
+            const Icon = icons[i] ?? Globe;
+            const tone = colors[i] ?? colors[0];
             return (
               <article
                 key={card.title}
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg sm:p-8"
               >
                 <div className="space-y-3">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${colors[i]} transition group-hover:scale-110`}>
-                    <Icon size={22} />
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${tone} transition group-hover:scale-110`}>
+                    <Icon size={22} aria-hidden />
                   </div>
                   <h3 className="font-display text-xl font-bold text-slate-900">{card.title}</h3>
                   <p className="text-sm leading-6 text-slate-600">{card.body}</p>

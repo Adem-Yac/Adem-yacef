@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
-import { social } from "@/data/portfolio";
-import { FacebookIcon, InstagramIcon, LinkedInIcon } from "@/components/brand-icons";
+import { brandName, social } from "@/data/portfolio";
+import { FacebookIcon, InstagramIcon, LinkedInIcon, WhatsAppIcon } from "@/components/brand-icons";
 
 export function SiteFooter() {
   const { t } = useLocale();
@@ -12,11 +12,12 @@ export function SiteFooter() {
     { href: social.instagram, label: "Instagram", icon: InstagramIcon },
     { href: social.facebook, label: "Facebook", icon: FacebookIcon },
     { href: social.linkedin, label: "LinkedIn", icon: LinkedInIcon },
+    { href: social.whatsapp, label: "WhatsApp", icon: WhatsAppIcon },
   ];
 
   return (
     <footer className="w-full border-t border-slate-200 bg-[#f8fafc]">
-      <div className="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:py-16 lg:px-6">
         <div className="mb-12 grid grid-cols-1 items-start gap-12 md:grid-cols-12">
           <div className="flex flex-col items-start gap-4 md:col-span-5">
             <div className="flex items-center gap-3">
@@ -24,7 +25,7 @@ export function SiteFooter() {
                 <Image src="/logo.png" alt="" width={32} height={32} className="h-full w-full object-contain" />
               </span>
               <div>
-                <p className="font-display text-lg font-bold leading-tight text-slate-900">Adem Yacef</p>
+                <p className="font-display text-lg font-bold leading-tight text-slate-900">{brandName}</p>
                 <p className="font-code text-[11px] font-semibold tracking-wider text-blue-600 uppercase">
                   {t.headlineRole}
                 </p>
