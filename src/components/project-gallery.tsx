@@ -5,6 +5,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PhoneFrame } from "@/components/phone-frame";
 
 type ProjectGalleryProps = {
+  /** Shown in the browser bar when a raw web screenshot (`/screen-…`) is framed. */
+  host: string;
   shots: string[];
   labels: string[];
   title: string;
@@ -13,6 +15,7 @@ type ProjectGalleryProps = {
 };
 
 export function ProjectGallery({
+  host,
   shots,
   labels,
   title,
@@ -116,7 +119,26 @@ export function ProjectGallery({
           }}
         >
           {/* Native img: Next/Image fill + stacked transforms was not swapping the visible shot. */}
-          {tall[current] ? (
+          {current.includes("/screen-") && !tall[current] ? (
+            // Raw web page captures go inside a browser window, top-aligned like a real page.
+            <div key={current} className="absolute inset-0 flex items-center justify-center p-3 sm:p-8">
+              <div className="flex max-h-full w-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_24px_48px_-18px_rgb(11_16_38/0.35)] ring-1 ring-rule">
+                <div className="flex h-8 shrink-0 items-center gap-1.5 border-b border-rule bg-[#f6f7fc] px-3">
+                  <span className="size-2.5 rounded-full bg-[#ff5f57]" aria-hidden />
+                  <span className="size-2.5 rounded-full bg-[#febc2e]" aria-hidden />
+                  <span className="size-2.5 rounded-full bg-[#28c840]" aria-hidden />
+                  <span className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-xs text-muted ring-1 ring-rule">{host}</span>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={current}
+                  alt={caption || `${title} — ${photoOf} ${photo + 1}`}
+                  draggable={false}
+                  className="min-h-0 w-full object-cover object-top select-none"
+                />
+              </div>
+            </div>
+          ) : tall[current] ? (
             // Raw phone screenshots go inside the Figma phone frame; composed mockups show as-is.
             <div key={current} className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
               <PhoneFrame className="h-full">

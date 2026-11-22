@@ -86,6 +86,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
       ) : null}
 
       <ProjectGallery
+        host={project.href ? new URL(project.href).host : project.title[locale]}
         shots={shots}
         labels={labels}
         title={project.title[locale]}

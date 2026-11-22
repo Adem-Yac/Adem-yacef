@@ -727,9 +727,9 @@ export const projects: Project[] = [
       "/projects/tibigoo/cover.png",
       "/projects/tibigoo/g1.png",
       "/projects/tibigoo/g2.png",
-      "/projects/tibigoo/g3.jpg",
-      "/projects/tibigoo/g4.jpg",
-      "/projects/tibigoo/g5.png",
+      "/projects/tibigoo/screen-restaurateur.jpg",
+      "/projects/tibigoo/screen-livreur.jpg",
+      "/projects/tibigoo/screen-contact.png",
     ],
     galleryLabels: {
       fr: [
@@ -816,6 +816,10 @@ export const projects: Project[] = [
       "/projects/nexteco/g5.png",
       "/projects/nexteco/g6.png",
       "/projects/nexteco/g7.png",
+      "/projects/nexteco/screen-accueil.jpg",
+      "/projects/nexteco/screen-dashboard-grh.jpg",
+      "/projects/nexteco/screen-pointage.jpg",
+      "/projects/nexteco/screen-employe-sombre.jpg",
     ],
     galleryLabels: {
       fr: [
@@ -827,6 +831,10 @@ export const projects: Project[] = [
         "Dashboard employé",
         "Annuaire employés",
         "Présences et pointages",
+        "Capture de l’app — portail d’accueil",
+        "Capture de l’app — dashboard GRH",
+        "Capture de l’app — pointage biométrique et filtres",
+        "Capture de l’app — espace employé en mode sombre",
       ],
       en: [
         "Cover — ZKTeco terminal and HRIS",
@@ -837,6 +845,10 @@ export const projects: Project[] = [
         "Employee dashboard",
         "Staff directory",
         "Attendance and punches",
+        "App screenshot — portal home",
+        "App screenshot — HR dashboard",
+        "App screenshot — biometric punches and filters",
+        "App screenshot — employee space in dark mode",
       ],
     },
     year: "2026",
