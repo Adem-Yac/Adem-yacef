@@ -63,8 +63,8 @@ export function ProjectGallery({
   return (
     <div className="mt-10">
       <div className="mb-3 flex items-center justify-between gap-3">
-        <p className="font-code text-xs font-semibold tracking-wide text-slate-500 uppercase">{choosePhoto}</p>
-        <p className="font-code text-xs text-slate-400">
+        <p className="font-code text-xs text-muted">{choosePhoto}</p>
+        <p className="font-code text-xs text-muted">
           {photoOf} {photo + 1} / {count}
         </p>
       </div>
@@ -74,7 +74,7 @@ export function ProjectGallery({
           <button
             type="button"
             onClick={() => go(-1)}
-            className="hidden shrink-0 rounded-full border border-slate-200 bg-white p-2.5 text-slate-800 shadow-sm hover:border-blue-300 hover:bg-white sm:inline-flex"
+            className="hidden shrink-0 cursor-pointer rounded-full border border-rule p-2.5 text-ink transition-colors hover:border-ink sm:inline-flex"
             aria-label="Previous"
           >
             <ChevronLeft size={18} />
@@ -82,7 +82,7 @@ export function ProjectGallery({
         ) : null}
 
         <div
-          className="relative h-[min(52vh,380px)] min-h-[240px] flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-[0_10px_35px_rgba(0,0,0,0.06)] sm:h-[min(72vh,740px)] sm:min-h-[420px]"
+          className="relative h-[min(52vh,380px)] min-h-[240px] flex-1 overflow-hidden rounded-[3px] bg-paper-2 ring-1 ring-rule sm:h-[min(72vh,740px)] sm:min-h-[420px]"
           onPointerDown={(event) => {
             if (event.pointerType === "mouse" && event.button !== 0) return;
             swipeX.current = event.clientX;
@@ -113,7 +113,7 @@ export function ProjectGallery({
               <button
                 type="button"
                 onClick={() => go(-1)}
-                className="absolute top-1/2 left-2 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/95 text-slate-800 shadow-sm hover:bg-white sm:hidden"
+                className="absolute top-1/2 left-2 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-paper/95 text-ink ring-1 ring-rule sm:hidden"
                 aria-label="Previous"
               >
                 <ChevronLeft size={18} />
@@ -121,7 +121,7 @@ export function ProjectGallery({
               <button
                 type="button"
                 onClick={() => go(1)}
-                className="absolute top-1/2 right-2 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/95 text-slate-800 shadow-sm hover:bg-white sm:hidden"
+                className="absolute top-1/2 right-2 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-paper/95 text-ink ring-1 ring-rule sm:hidden"
                 aria-label="Next"
               >
                 <ChevronRight size={18} />
@@ -134,7 +134,7 @@ export function ProjectGallery({
           <button
             type="button"
             onClick={() => go(1)}
-            className="hidden shrink-0 rounded-full border border-slate-200 bg-white p-2.5 text-slate-800 shadow-sm hover:border-blue-300 hover:bg-white sm:inline-flex"
+            className="hidden shrink-0 cursor-pointer rounded-full border border-rule p-2.5 text-ink transition-colors hover:border-ink sm:inline-flex"
             aria-label="Next"
           >
             <ChevronRight size={18} />
@@ -142,7 +142,7 @@ export function ProjectGallery({
         ) : null}
       </div>
 
-      {caption ? <p className="mt-3 text-sm font-medium text-slate-600">{caption}</p> : null}
+      {caption ? <p className="mt-3 font-display text-base text-ink-soft italic">{caption}</p> : null}
 
       {count > 1 ? (
         <div className="mt-3 flex justify-center gap-1.5">
@@ -152,7 +152,7 @@ export function ProjectGallery({
               type="button"
               onClick={() => show(index)}
               className={`h-1.5 rounded-full transition-all ${
-                index === photo ? "w-6 bg-blue-600" : "w-1.5 bg-slate-300 hover:bg-slate-400"
+                index === photo ? "w-6 bg-ink" : "w-1.5 bg-rule hover:bg-muted"
               }`}
               aria-label={labels[index] ?? `${photoOf} ${index + 1}`}
               aria-current={index === photo}
@@ -170,8 +170,8 @@ export function ProjectGallery({
               type="button"
               data-thumb={index}
               onClick={() => show(index)}
-              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 bg-slate-100 transition sm:h-20 sm:w-32 ${
-                selected ? "border-blue-600 ring-2 ring-blue-200" : "border-slate-200 hover:border-blue-300"
+              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-[2px] border bg-paper-2 transition sm:h-20 sm:w-32 ${
+                selected ? "border-ink" : "border-rule opacity-70 hover:opacity-100"
               }`}
               aria-pressed={selected}
               aria-label={labels[index] ?? `${photoOf} ${index + 1}`}

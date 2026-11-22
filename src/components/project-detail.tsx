@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, Code2, Globe } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 import { ProjectGallery } from "@/components/project-gallery";
 import { getProject } from "@/data/portfolio";
@@ -37,32 +37,33 @@ export function ProjectDetail({ slug }: { slug: string }) {
         <button
           type="button"
           onClick={goBack}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:border-blue-400 hover:text-blue-700"
+          className="inline-flex cursor-pointer items-center gap-2 text-sm text-ink-soft transition-colors hover:text-accent"
         >
           <ArrowLeft size={16} /> {t.back}
         </button>
       </div>
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        <span className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-0.5 font-code text-xs font-bold text-blue-700">
+      <div className="mb-4 flex flex-wrap items-center gap-2 font-code text-xs text-muted">
+        <span>
           {project.category[locale]}
         </span>
-        <span className="rounded-full bg-slate-100 px-2 py-0.5 font-code text-[10px] font-semibold uppercase text-slate-500">
+        <span aria-hidden>—</span>
+        <span>
           {project.kind === "mobile" ? t.kindMobile : t.kindWeb}
         </span>
       </div>
-      <h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+      <h1 className="font-display text-5xl leading-[0.95] font-light tracking-[-0.035em] text-ink sm:text-6xl lg:text-7xl">
         {project.title[locale]}
       </h1>
-      <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">{project.description[locale]}</p>
-      <div className="mt-6 flex flex-wrap gap-3">
+      <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft">{project.description[locale]}</p>
+      <div className="mt-8 flex flex-wrap items-center gap-6">
         {project.href ? (
           <a
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-bold text-white"
+            className="btn-ink inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-medium"
           >
-            <Globe size={16} /> {t.liveSite}
+            {t.liveSite} <ArrowUpRight size={15} aria-hidden />
           </a>
         ) : null}
         {project.repo ? (
@@ -70,9 +71,9 @@ export function ProjectDetail({ slug }: { slug: string }) {
             href={project.repo}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-blue-400"
+            className="link-underline text-sm font-medium text-ink"
           >
-            <Code2 size={16} /> {t.github} <ArrowUpRight size={14} />
+            {t.github} ↗
           </a>
         ) : null}
       </div>
@@ -89,33 +90,33 @@ export function ProjectDetail({ slug }: { slug: string }) {
         <div className="space-y-10 lg:col-span-7">
           {project.context ? (
             <section>
-              <h2 className="font-display text-2xl font-bold text-slate-900">{t.contextLabel}</h2>
-              <p className="mt-3 leading-7 text-slate-600">{project.context[locale]}</p>
+              <h2 className="font-display text-2xl text-ink italic">{t.contextLabel}</h2>
+              <p className="mt-3 leading-7 text-ink-soft">{project.context[locale]}</p>
             </section>
           ) : (
             <section>
-              <h2 className="font-display text-2xl font-bold text-slate-900">{t.overview}</h2>
-              <p className="mt-3 leading-7 text-slate-600">{project.summary[locale]}</p>
+              <h2 className="font-display text-2xl text-ink italic">{t.overview}</h2>
+              <p className="mt-3 leading-7 text-ink-soft">{project.summary[locale]}</p>
             </section>
           )}
           {project.challenge ? (
             <section>
-              <h2 className="font-display text-2xl font-bold text-slate-900">{t.challengeLabel}</h2>
-              <p className="mt-3 leading-7 text-slate-600">{project.challenge[locale]}</p>
+              <h2 className="font-display text-2xl text-ink italic">{t.challengeLabel}</h2>
+              <p className="mt-3 leading-7 text-ink-soft">{project.challenge[locale]}</p>
             </section>
           ) : null}
           {project.solution ? (
             <section>
-              <h2 className="font-display text-2xl font-bold text-slate-900">{t.solutionLabel}</h2>
-              <p className="mt-3 leading-7 text-slate-600">{project.solution[locale]}</p>
+              <h2 className="font-display text-2xl text-ink italic">{t.solutionLabel}</h2>
+              <p className="mt-3 leading-7 text-ink-soft">{project.solution[locale]}</p>
             </section>
           ) : null}
           <section>
-            <h2 className="font-display text-2xl font-bold text-slate-900">{t.highlights}</h2>
+            <h2 className="font-display text-2xl text-ink italic">{t.highlights}</h2>
             <ul className="mt-4 space-y-2">
               {project.highlights[locale].map((item) => (
-                <li key={item} className="flex items-start gap-2 text-slate-700">
-                  <CheckCircle2 size={16} className="mt-0.5 text-blue-600" />
+                <li key={item} className="flex items-start gap-3 border-t border-rule pt-2 text-ink-soft">
+                  <span className="text-accent" aria-hidden>—</span>
                   {item}
                 </li>
               ))}
@@ -123,10 +124,10 @@ export function ProjectDetail({ slug }: { slug: string }) {
           </section>
           {project.modules ? (
             <section>
-              <h2 className="font-display text-2xl font-bold text-slate-900">{t.modulesLabel}</h2>
+              <h2 className="font-display text-2xl text-ink italic">{t.modulesLabel}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.modules[locale].map((item) => (
-                  <span key={item} className="rounded-md border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">
+                  <span key={item} className="border border-rule px-3 py-1 text-sm text-ink-soft">
                     {item}
                   </span>
                 ))}
@@ -135,31 +136,31 @@ export function ProjectDetail({ slug }: { slug: string }) {
           ) : null}
         </div>
         <aside className="lg:col-span-5">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="border-t border-ink pt-6 lg:sticky lg:top-28">
             <dl className="space-y-3">
               {meta.map((row) => (
                 <div key={row.label}>
-                  <dt className="font-code text-[11px] font-semibold tracking-wide text-slate-400 uppercase">{row.label}</dt>
-                  <dd className="mt-0.5 text-sm font-medium text-slate-800">{row.value}</dd>
+                  <dt className="font-code text-[11px] text-muted">{row.label}</dt>
+                  <dd className="mt-0.5 text-sm text-ink">{row.value}</dd>
                 </div>
               ))}
             </dl>
-            <h2 className="mt-6 font-display text-lg font-bold text-slate-900">{t.stackLabel}</h2>
+            <h2 className="mt-8 font-code text-[11px] font-normal text-muted">{t.stackLabel}</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {project.stack.map((tag) => (
-                <span key={tag} className="rounded-md bg-slate-100 px-2.5 py-1 font-code text-xs font-medium text-slate-700">
+                <span key={tag} className="font-code text-xs text-ink-soft">
                   {tag}
                 </span>
               ))}
             </div>
-            <h2 className="mt-6 font-display text-lg font-bold text-slate-900">{t.links}</h2>
+            <h2 className="mt-8 font-code text-[11px] font-normal text-muted">{t.links}</h2>
             <div className="mt-3 space-y-2">
               {project.href ? (
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate font-code text-xs font-semibold text-blue-600 hover:underline"
+                  className="block truncate font-code text-xs text-ink underline-offset-4 hover:text-accent hover:underline"
                 >
                   {project.href}
                 </a>
@@ -169,13 +170,13 @@ export function ProjectDetail({ slug }: { slug: string }) {
                   href={project.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate font-code text-xs font-semibold text-blue-600 hover:underline"
+                  className="block truncate font-code text-xs text-ink underline-offset-4 hover:text-accent hover:underline"
                 >
                   {project.repo}
                 </a>
               ) : null}
               {!project.href && !project.repo ? (
-                <p className="text-sm text-slate-500">{t.noPublicLink}</p>
+                <p className="text-sm text-muted">{t.noPublicLink}</p>
               ) : null}
             </div>
           </div>

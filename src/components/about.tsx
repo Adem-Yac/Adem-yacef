@@ -1,77 +1,40 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
-import { CheckCircle2, Database, Globe, Infinity as InfinityIcon, Smartphone } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
-
-const icons: LucideIcon[] = [Globe, Smartphone, Database, InfinityIcon];
-const colors = [
-  "text-blue-600 bg-blue-50 border-blue-200",
-  "text-indigo-600 bg-indigo-50 border-indigo-200",
-  "text-violet-600 bg-violet-50 border-violet-200",
-  "text-blue-700 bg-blue-50 border-blue-200",
-] as const;
+import { SectionHead } from "@/components/section-head";
 
 export function About() {
   const { t } = useLocale();
   return (
-    <section id="a-propos" className="relative w-full border-y border-slate-200/80 bg-[#f8fafc] py-14 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="mb-12 flex flex-col items-center text-center">
-          <span className="font-code text-xs font-bold tracking-widest text-blue-600 uppercase">
-            {t.aboutKicker}
-          </span>
-          <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-[38px]">
-            {t.aboutTitle}
-          </h2>
-        </div>
+    <section id="a-propos" className="mx-auto max-w-7xl px-4 py-16 sm:py-24 lg:px-6">
+      <SectionHead n="01" kicker={t.aboutKicker} title={t.aboutTitle} />
 
-        <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="rounded-2xl border border-slate-200/80 border-l-4 border-l-blue-600 bg-white p-6 shadow-sm lg:col-span-7">
-            <p className="font-code text-[11px] font-bold tracking-wider text-blue-600 uppercase">
-              {t.aboutWhoTitle}
-            </p>
-            <p className="mt-3 text-lg leading-8 text-slate-700">{t.aboutWho}</p>
-            <p className="mt-4 text-base leading-7 text-slate-600">{t.aboutLead}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm lg:col-span-5">
-            <p className="font-code text-[11px] font-bold tracking-wider text-blue-600 uppercase">
-              {t.aboutBringTitle}
-            </p>
-            <ul className="mt-4 space-y-3">
-              {t.aboutBring.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm leading-6 text-slate-700">
-                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-7">
+          <p className="font-display text-2xl leading-[1.35] font-light text-ink sm:text-[1.75rem]">{t.aboutWho}</p>
+          <p className="mt-6 max-w-[38rem] text-base leading-7 text-ink-soft">{t.aboutLead}</p>
         </div>
+        <div className="lg:col-span-4 lg:col-start-9">
+          <p className="font-code text-xs text-muted">{t.aboutBringTitle}</p>
+          <ol className="mt-4 space-y-4">
+            {t.aboutBring.map((item, i) => (
+              <li key={item} className="flex gap-4 border-t border-rule pt-4 text-sm leading-6 text-ink-soft">
+                <span className="font-display text-lg leading-6 text-accent italic">{i + 1}.</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {t.aboutCards.map((card, i) => {
-            const Icon = icons[i] ?? Globe;
-            const tone = colors[i] ?? colors[0];
-            return (
-              <article
-                key={card.title}
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg sm:p-8"
-              >
-                <div className="space-y-3">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${tone} transition group-hover:scale-110`}>
-                    <Icon size={22} aria-hidden />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-slate-900">{card.title}</h3>
-                  <p className="text-sm leading-6 text-slate-600">{card.body}</p>
-                </div>
-                <p className="mt-4 flex items-center gap-1 border-t border-slate-100 pt-3 font-code text-xs font-semibold text-blue-600">
-                  {card.meta}
-                </p>
-              </article>
-            );
-          })}
-        </div>
+      <div className="mt-16 grid gap-x-8 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
+        {t.aboutCards.map((card) => (
+          <article key={card.title} className="border-t border-rule py-6">
+            <h3 className="font-display text-xl text-ink">{card.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">{card.body}</p>
+            <p className="mt-4 font-code text-[11px] text-ink-soft">{card.meta}</p>
+          </article>
+        ))}
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { MessageSquareQuote, Send } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 import type { Review } from "@/lib/review-types";
 
@@ -58,100 +57,64 @@ export function ClientReviews() {
   }
 
   return (
-    <div id="avis-clients" className="mt-12 border-t border-slate-200 pt-10 sm:mt-16 sm:pt-16">
-      <div className="mb-8 max-w-2xl">
-        <h3 className="font-display text-2xl font-bold text-slate-900">{t.reviewsTitle}</h3>
-        <p className="mt-2 text-slate-600">{t.reviewsLead}</p>
-      </div>
-      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
-        <form
-          onSubmit={onSubmit}
-          className="flex flex-col gap-4 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_10px_35px_rgba(0,0,0,0.04)] sm:p-8 lg:col-span-5"
-        >
-          <input
-            type="text"
-            name="fax_number"
-            tabIndex={-1}
-            autoComplete="off"
-            className="sr-only"
-            aria-hidden="true"
-          />
-          <label className="flex flex-col gap-1">
-            <span className="font-code text-[11px] font-semibold tracking-wider text-slate-600 uppercase">
-              {t.reviewName}
-            </span>
-            <input
-              name="name"
-              required
-              minLength={2}
-              maxLength={80}
-              autoComplete="name"
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15 sm:text-sm"
-            />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span className="font-code text-[11px] font-semibold tracking-wider text-slate-600 uppercase">
-              {t.reviewProject}
-            </span>
-            <input
-              name="project"
-              required
-              minLength={2}
-              maxLength={80}
-              placeholder={t.reviewProject}
-              autoComplete="off"
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15 sm:text-sm"
-            />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span className="font-code text-[11px] font-semibold tracking-wider text-slate-600 uppercase">
-              {t.reviewComment}
-            </span>
-            <textarea
-              name="comment"
-              required
-              minLength={8}
-              maxLength={500}
-              rows={5}
-              className="w-full resize-y rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-600/15 sm:text-sm"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={pending}
-            className="btn-primary flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl py-2.5 font-display text-sm font-bold text-white disabled:opacity-60"
-          >
-            <Send size={16} /> {pending ? "…" : t.reviewSubmit}
-          </button>
-          {status === "ok" ? (
-            <p className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-center text-sm text-emerald-800">
-              {t.reviewOk}
-            </p>
-          ) : null}
-          {status === "error" ? (
-            <p className="rounded-xl border border-red-200 bg-red-50 p-4 text-center text-sm text-red-800">
-              {t.reviewError}
-            </p>
-          ) : null}
-        </form>
+    <div id="avis-clients" className="mt-20 border-t border-rule pt-12 sm:mt-28 sm:pt-16">
+      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-4">
+          <h3 className="font-display text-3xl text-ink italic">{t.reviewsTitle}</h3>
+          <p className="mt-3 text-sm leading-6 text-muted">{t.reviewsLead}</p>
 
-        <div className="lg:col-span-7">
+          <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-6">
+            <input
+              type="text"
+              name="fax_number"
+              tabIndex={-1}
+              autoComplete="off"
+              className="sr-only"
+              aria-hidden="true"
+            />
+            <label className="block">
+              <span className="block text-sm text-muted">{t.reviewName}</span>
+              <input name="name" required minLength={2} maxLength={80} autoComplete="name" className="field" />
+            </label>
+            <label className="block">
+              <span className="block text-sm text-muted">{t.reviewProject}</span>
+              <input name="project" required minLength={2} maxLength={80} autoComplete="off" className="field" />
+            </label>
+            <label className="block">
+              <span className="block text-sm text-muted">{t.reviewComment}</span>
+              <textarea name="comment" required minLength={8} maxLength={500} rows={3} className="field resize-y" />
+            </label>
+            <div>
+              <button
+                type="submit"
+                disabled={pending}
+                className="link-underline cursor-pointer text-sm font-medium text-ink disabled:cursor-wait disabled:opacity-60"
+              >
+                {pending ? "…" : t.reviewSubmit} →
+              </button>
+              <p aria-live="polite" className="mt-3 text-sm">
+                {status === "ok" ? <span className="text-ink">{t.reviewOk}</span> : null}
+                {status === "error" ? <span className="text-accent-deep">{t.reviewError}</span> : null}
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <div className="lg:col-span-7 lg:col-start-6">
           {reviews.length === 0 ? (
-            <p className="border border-dashed border-slate-200 px-5 py-10 text-center text-sm text-slate-500">
+            <p className="border border-dashed border-rule px-5 py-12 text-center font-display text-lg text-muted italic">
               {t.reviewEmpty}
             </p>
           ) : (
-            <ul className="flex max-h-[34rem] flex-col gap-6 overflow-y-auto pr-1">
+            <ul className="max-h-[40rem] columns-1 gap-8 overflow-y-auto pr-1 sm:columns-2">
               {reviews.map((review) => (
-                <li key={review.id} className="border-l-2 border-blue-600 pl-5">
-                  <p className="font-display text-base font-bold text-slate-900">{review.name}</p>
-                  <p className="mt-0.5 font-code text-[11px] font-semibold tracking-wider text-blue-600 uppercase">
-                    {review.project}
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    <MessageSquareQuote className="mr-1 inline size-4 text-slate-300" aria-hidden />
+                <li key={review.id} className="mb-8 break-inside-avoid">
+                  <blockquote className="font-display text-lg leading-snug text-ink">
+                    <span className="mr-0.5 text-2xl leading-none text-accent" aria-hidden>“</span>
                     {review.comment}
-                  </p>
+                  </blockquote>
+                  <p className="mt-3 text-sm text-ink">{review.name}</p>
+                  <p className="font-code text-[11px] text-muted">{review.project}</p>
                 </li>
               ))}
             </ul>

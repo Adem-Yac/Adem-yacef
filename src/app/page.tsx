@@ -8,7 +8,7 @@ import { TrackRecord } from "@/components/track-record";
 
 export default function Home() {
   return (
-      <main className="w-full overflow-x-hidden bg-[#fafbff]">
+      <main className="w-full overflow-x-hidden bg-paper">
       <Hero />
       <About />
       <Skills />

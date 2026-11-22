@@ -28,7 +28,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   if (!getProject(slug)) notFound();
   return (
-    <main className="w-full bg-[#fafbff]">
+    <main className="w-full bg-paper">
       <ProjectDetail slug={slug} />
     </main>
   );
