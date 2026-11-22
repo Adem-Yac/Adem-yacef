@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1000" height="1000" fill="none"><title>AdemYac</title><defs><linearGradient id="ay" x1="12" y1="10" x2="90" y2="92" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
-  <path id="lettre-A" d="M14 86 L50 14 L86 86" stroke="url(#ay)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <path id="chevron-gauche" d="M42 57.25 L36.6 63.75 L42 70.25" stroke="url(#ay)" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <path id="slash" d="M53 54.5 L47 73" stroke="url(#ay)" stroke-width="5.2" stroke-linecap="round" fill="none"/>
-  <path id="chevron-droit" d="M58 57.25 L63.4 63.75 L58 70.25" stroke="url(#ay)" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="1024" height="1024" fill="none"><title>AdemYac</title>
+  <defs><clipPath id="ay"><rect x="0" y="7" width="64" height="50"/></clipPath></defs>
+  <g clip-path="url(#ay)" stroke-linejoin="miter" stroke-miterlimit="12" fill="none">
+    <path id="lettre-A" d="M2.5 66 L22 7 L41.5 66" stroke="#12163A" stroke-width="9"/>
+    <path id="barre-A" d="M13 41 H29" stroke="#12163A" stroke-width="6"/>
+    <path id="bras-Y" d="M62 -2 L33.5 35.5" stroke="#2F6BFF" stroke-width="9"/>
+  </g></svg>
