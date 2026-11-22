@@ -7,6 +7,8 @@ export type Project = {
   accent: "blue" | "indigo" | "violet";
   featured?: boolean;
   image?: string;
+  /** Tall screenshot (full page or full phone screen) shown in the device frame; scrolls on hover. */
+  tile?: string;
   preview?: string;
   gallery: string[];
   galleryLabels?: Record<Locale, string[]>;
@@ -40,7 +42,34 @@ export const projects: Project[] = [
     slug: "justsell",
     kind: "mobile",
     accent: "blue",
-    gallery: [],
+    image: "/projects/justsell/cover.jpg",
+    tile: "/projects/justsell/tile.jpg",
+    gallery: [
+      "/projects/justsell/cover.jpg",
+      "/projects/justsell/g1.jpg",
+      "/projects/justsell/g2.jpg",
+      "/projects/justsell/g3.jpg",
+      "/projects/justsell/g4.jpg",
+      "/projects/justsell/g5.jpg",
+    ],
+    galleryLabels: {
+      fr: [
+        "Cover — commandes, accueil et produits",
+        "Écran d’accueil",
+        "Tableau de bord : ventes du jour par source",
+        "Commandes",
+        "JustCall : confirmation des commandes par téléphone",
+        "Produits",
+      ],
+      en: [
+        "Cover — orders, home and products",
+        "Welcome screen",
+        "Dashboard: today's sales by source",
+        "Orders",
+        "JustCall: confirming orders by phone",
+        "Products",
+      ],
+    },
     year: "2026",
     role: {
       fr: "Mobile — app Flutter marchands (iOS et Android)",
@@ -92,6 +121,7 @@ export const projects: Project[] = [
   },
   {
     slug: "souri",
+    tile: "/projects/souri/g1.png",
     kind: "mobile",
     accent: "blue",
     image: "/projects/souri/cover.png",
@@ -185,6 +215,7 @@ export const projects: Project[] = [
   },
   {
     slug: "noor-al-iman",
+    tile: "/projects/noor-al-iman/g2.png",
     kind: "mobile",
     accent: "indigo",
     image: "/projects/noor-al-iman/cover.png",
@@ -271,6 +302,7 @@ export const projects: Project[] = [
   },
   {
     slug: "studyai",
+    tile: "/projects/studyai/g7.png",
     kind: "mobile",
     accent: "violet",
     featured: true,
@@ -358,6 +390,7 @@ export const projects: Project[] = [
   },
   {
     slug: "fintrack",
+    tile: "/projects/fintrack/g11.png",
     kind: "mobile",
     accent: "blue",
     featured: true,
@@ -445,6 +478,7 @@ export const projects: Project[] = [
   },
   {
     slug: "kaizen",
+    tile: "/projects/kaizen/g6.png",
     kind: "mobile",
     accent: "indigo",
     image: "/projects/kaizen/cover.png",
@@ -529,6 +563,7 @@ export const projects: Project[] = [
   },
   {
     slug: "king-livraison",
+    tile: "/projects/king-livraison/g2.png",
     kind: "web",
     accent: "blue",
     featured: true,
@@ -635,6 +670,7 @@ export const projects: Project[] = [
   },
   {
     slug: "mecad",
+    tile: "/projects/mecad/g1.png",
     kind: "web",
     accent: "indigo",
     image: "/projects/mecad/cover.png",
