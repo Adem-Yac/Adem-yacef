@@ -63,8 +63,8 @@ export function ProjectGallery({
   return (
     <div className="mt-10">
       <div className="mb-3 flex items-center justify-between gap-3">
-        <p className="font-code text-xs text-muted">{choosePhoto}</p>
-        <p className="font-code text-xs text-muted">
+        <p className="text-sm text-muted">{choosePhoto}</p>
+        <p className="text-sm text-muted">
           {photoOf} {photo + 1} / {count}
         </p>
       </div>
@@ -82,7 +82,7 @@ export function ProjectGallery({
         ) : null}
 
         <div
-          className="relative h-[min(52vh,380px)] min-h-[240px] flex-1 overflow-hidden rounded-[3px] bg-paper-2 ring-1 ring-rule sm:h-[min(72vh,740px)] sm:min-h-[420px]"
+          className="relative h-[min(52vh,380px)] min-h-[240px] flex-1 overflow-hidden rounded-[28px] bg-card sm:h-[min(72vh,740px)] sm:min-h-[420px]"
           onPointerDown={(event) => {
             if (event.pointerType === "mouse" && event.button !== 0) return;
             swipeX.current = event.clientX;
@@ -142,7 +142,7 @@ export function ProjectGallery({
         ) : null}
       </div>
 
-      {caption ? <p className="mt-3 font-display text-base text-ink-soft italic">{caption}</p> : null}
+      {caption ? <p className="mt-3 text-base text-ink-soft">{caption}</p> : null}
 
       {count > 1 ? (
         <div className="mt-3 flex justify-center gap-1.5">
@@ -170,8 +170,8 @@ export function ProjectGallery({
               type="button"
               data-thumb={index}
               onClick={() => show(index)}
-              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-[2px] border bg-paper-2 transition sm:h-20 sm:w-32 ${
-                selected ? "border-ink" : "border-rule opacity-70 hover:opacity-100"
+              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border-2 bg-card transition sm:h-20 sm:w-32 ${
+                selected ? "border-accent" : "border-transparent opacity-70 hover:opacity-100"
               }`}
               aria-pressed={selected}
               aria-label={labels[index] ?? `${photoOf} ${index + 1}`}

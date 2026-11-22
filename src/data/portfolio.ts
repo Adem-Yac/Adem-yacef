@@ -845,10 +845,10 @@ export const copy = {
   fr: {
     nav: [
       { href: "#accueil", label: "Accueil" },
+      { href: "#projets", label: "Projets" },
       { href: "#a-propos", label: "À propos" },
       { href: "#competences", label: "Compétences" },
       { href: "#outils", label: "Outils" },
-      { href: "#projets", label: "Projets" },
       { href: "#track-record", label: "Parcours" },
       { href: "#contact", label: "Contact" },
     ],
@@ -984,10 +984,10 @@ export const copy = {
   en: {
     nav: [
       { href: "#accueil", label: "Home" },
+      { href: "#projets", label: "Work" },
       { href: "#a-propos", label: "About" },
       { href: "#competences", label: "Skills" },
       { href: "#outils", label: "Tools" },
-      { href: "#projets", label: "Work" },
       { href: "#track-record", label: "Experience" },
       { href: "#contact", label: "Contact" },
     ],
@@ -1135,7 +1135,7 @@ export const skills = [
     accent: "blue",
   },
   {
-    title: { fr: "Développement Mobile", en: "Mobile Development" },
+    title: { fr: "Développement mobile", en: "Mobile development" },
     subtitle: {
       fr: "Applications multiplateformes iOS & Android",
       en: "Cross-platform iOS & Android apps",
@@ -1146,7 +1146,7 @@ export const skills = [
     accent: "indigo",
   },
   {
-    title: { fr: "Back-End & Services API", en: "Back-End & APIs" },
+    title: { fr: "Back-end & services API", en: "Back-end & APIs" },
     subtitle: {
       fr: "Services modulaires, sécurité et APIs robustes",
       en: "Modular services, security and solid APIs",

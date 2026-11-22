@@ -57,13 +57,13 @@ export function ClientReviews() {
   }
 
   return (
-    <div id="avis-clients" className="mt-20 border-t border-rule pt-12 sm:mt-28 sm:pt-16">
+    <div id="avis-clients" className="mt-20 sm:mt-28">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
-          <h3 className="font-display text-3xl text-ink italic">{t.reviewsTitle}</h3>
-          <p className="mt-3 text-sm leading-6 text-muted">{t.reviewsLead}</p>
+          <h3 className="text-3xl font-bold text-ink">{t.reviewsTitle}</h3>
+          <p className="mt-3 text-base leading-7 text-muted">{t.reviewsLead}</p>
 
-          <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-6">
+          <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
             <input
               type="text"
               name="fax_number"
@@ -73,28 +73,28 @@ export function ClientReviews() {
               aria-hidden="true"
             />
             <label className="block">
-              <span className="block text-sm text-muted">{t.reviewName}</span>
+              <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.reviewName}</span>
               <input name="name" required minLength={2} maxLength={80} autoComplete="name" className="field" />
             </label>
             <label className="block">
-              <span className="block text-sm text-muted">{t.reviewProject}</span>
+              <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.reviewProject}</span>
               <input name="project" required minLength={2} maxLength={80} autoComplete="off" className="field" />
             </label>
             <label className="block">
-              <span className="block text-sm text-muted">{t.reviewComment}</span>
+              <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.reviewComment}</span>
               <textarea name="comment" required minLength={8} maxLength={500} rows={3} className="field resize-y" />
             </label>
             <div>
               <button
                 type="submit"
                 disabled={pending}
-                className="link-underline cursor-pointer text-sm font-medium text-ink disabled:cursor-wait disabled:opacity-60"
+                className="cursor-pointer rounded-full border-2 border-ink px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-white disabled:cursor-wait disabled:opacity-60"
               >
-                {pending ? "…" : t.reviewSubmit} →
+                {pending ? "…" : t.reviewSubmit}
               </button>
               <p aria-live="polite" className="mt-3 text-sm">
                 {status === "ok" ? <span className="text-ink">{t.reviewOk}</span> : null}
-                {status === "error" ? <span className="text-accent-deep">{t.reviewError}</span> : null}
+                {status === "error" ? <span className="text-red-700">{t.reviewError}</span> : null}
               </p>
             </div>
           </form>
@@ -102,19 +102,16 @@ export function ClientReviews() {
 
         <div className="lg:col-span-7 lg:col-start-6">
           {reviews.length === 0 ? (
-            <p className="border border-dashed border-rule px-5 py-12 text-center font-display text-lg text-muted italic">
+            <p className="rounded-[28px] border-2 border-dashed border-rule px-5 py-14 text-center text-lg text-muted">
               {t.reviewEmpty}
             </p>
           ) : (
-            <ul className="max-h-[40rem] columns-1 gap-8 overflow-y-auto pr-1 sm:columns-2">
+            <ul className="max-h-[40rem] columns-1 gap-4 overflow-y-auto pr-1 sm:columns-2">
               {reviews.map((review) => (
-                <li key={review.id} className="mb-8 break-inside-avoid">
-                  <blockquote className="font-display text-lg leading-snug text-ink">
-                    <span className="mr-0.5 text-2xl leading-none text-accent" aria-hidden>“</span>
-                    {review.comment}
-                  </blockquote>
-                  <p className="mt-3 text-sm text-ink">{review.name}</p>
-                  <p className="font-code text-[11px] text-muted">{review.project}</p>
+                <li key={review.id} className="mb-4 break-inside-avoid rounded-[24px] bg-card p-6">
+                  <blockquote className="text-lg leading-snug text-ink">{review.comment}</blockquote>
+                  <p className="mt-4 text-sm font-semibold text-ink">{review.name}</p>
+                  <p className="text-sm text-muted">{review.project}</p>
                 </li>
               ))}
             </ul>

@@ -1,24 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { SiteShell } from "@/components/site-shell";
 import "./globals.css";
 
-const display = Fraunces({
-  variable: "--font-fraunces",
+const display = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
-});
-
-const body = Geist({
-  variable: "--font-geist",
-  subsets: ["latin", "latin-ext"],
-});
-
-const code = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  axes: ["opsz", "wdth"],
 });
 
 export const viewport: Viewport = {
@@ -42,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${display.variable} ${body.variable} ${code.variable} h-full antialiased`}
+      className={`${display.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper font-body text-ink">
         <SiteShell>{children}</SiteShell>

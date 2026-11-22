@@ -10,10 +10,10 @@ export default function Home() {
   return (
       <main className="w-full overflow-x-hidden bg-paper">
       <Hero />
+      <Projects />
       <About />
       <Skills />
       <Tools />
-      <Projects />
       <TrackRecord />
       <Contact />
     </main>

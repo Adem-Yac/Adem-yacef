@@ -5,43 +5,47 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
 import { SectionHead } from "@/components/section-head";
+import { WaveUnderline } from "@/components/wave-underline";
 import { projects, type Project, type ProjectKind } from "@/data/portfolio";
 
-function ProjectCard({ project, index, featured }: { project: Project; index: number; featured: boolean }) {
+function ProjectRow({ project }: { project: Project }) {
   const { locale, t } = useLocale();
 
   return (
-    <article className={featured ? "sm:col-span-2" : undefined}>
-      <Link href={`/projets/${project.slug}`} className="group block">
-        <div
-          className={`relative overflow-hidden rounded-[3px] bg-ink/90 ring-1 ring-rule ${
-            featured ? "aspect-[16/10] sm:aspect-[16/8]" : "aspect-[4/3]"
-          }`}
-        >
+    <li className="border-t border-rule">
+      <Link
+        href={`/projets/${project.slug}`}
+        className="group grid gap-5 py-8 sm:grid-cols-12 sm:items-center sm:gap-8 sm:py-10"
+      >
+        <div className="sm:col-span-7">
+          <p className="text-sm text-muted">
+            {project.kind === "web" ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
+          </p>
+          <h3 className="type-tight mt-1 inline-block font-display text-4xl leading-none font-bold text-ink sm:text-6xl">
+            {project.title[locale]}
+            <WaveUnderline className="mt-2" />
+          </h3>
+          <p className="mt-4 max-w-lg text-base leading-7 text-ink-soft">{project.summary[locale]}</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {project.stack.map((tag) => (
+              <li key={tag} className="rounded-full border border-rule px-3 py-1 text-sm text-ink-soft">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="relative order-first aspect-[16/10] overflow-hidden rounded-[22px] bg-ink sm:order-none sm:col-span-5">
           <Image
             src={project.image}
             alt={project.title[locale]}
             fill
             unoptimized
-            className="object-cover object-top transition duration-500 ease-out group-hover:scale-[1.025]"
-            sizes={featured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+            className="object-cover object-top transition duration-500 ease-out group-hover:scale-[1.03]"
+            sizes="(max-width: 640px) 100vw, 40vw"
           />
         </div>
-        <div className="mt-4 flex items-baseline gap-3">
-          <span className="font-code text-xs text-muted">{String(index + 1).padStart(2, "0")}</span>
-          <div className="min-w-0">
-            <h3 className="font-display text-xl text-ink decoration-1 underline-offset-4 group-hover:underline sm:text-2xl">
-              {project.title[locale]}
-            </h3>
-            <p className="mt-1 font-code text-[11px] text-muted">
-              {project.kind === "web" ? t.kindWeb : t.kindMobile} — {project.category[locale]}
-            </p>
-            <p className="mt-2 line-clamp-2 max-w-xl text-sm leading-6 text-ink-soft">{project.summary[locale]}</p>
-            <p className="mt-2 font-code text-[11px] text-muted">{project.stack.join(" · ")}</p>
-          </div>
-        </div>
       </Link>
-    </article>
+    </li>
   );
 }
 
@@ -54,35 +58,36 @@ export function Projects() {
 
   return (
     <section id="projets" className="mx-auto w-full max-w-7xl scroll-mt-24 px-4 py-16 sm:py-24 lg:px-6">
-      <SectionHead n="04" kicker={t.projectsKicker} title={t.projectsTitle} lead={t.projectsLead} />
-
-      <div className="mb-10 flex flex-wrap gap-x-6 gap-y-2 text-sm" role="group" aria-label={t.projectsTitle}>
-        {(
-          [
-            ["all", t.filterAll, web.length + mobile.length],
-            ["web", t.filterWeb, web.length],
-            ["mobile", t.filterMobile, mobile.length],
-          ] as const
-        ).map(([key, label, count]) => (
-          <button
-            key={key}
-            type="button"
-            aria-pressed={filter === key}
-            onClick={() => setFilter(key)}
-            className={`cursor-pointer border-b pb-1 transition-colors ${
-              filter === key ? "border-ink text-ink" : "border-transparent text-muted hover:text-ink"
-            }`}
-          >
-            {label} <sup className="font-code text-[10px]">{count}</sup>
-          </button>
-        ))}
+      <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+        <SectionHead title={t.projectsTitle} lead={t.projectsLead} />
+        <div className="mb-12 inline-flex self-start rounded-full bg-paper-2 p-1 sm:mb-16 lg:self-auto" role="group" aria-label={t.projectsTitle}>
+          {(
+            [
+              ["all", t.filterAll, web.length + mobile.length],
+              ["web", t.filterWeb, web.length],
+              ["mobile", t.filterMobile, mobile.length],
+            ] as const
+          ).map(([key, label, count]) => (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={filter === key}
+              onClick={() => setFilter(key)}
+              className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                filter === key ? "bg-card text-ink shadow-[0_1px_3px_rgb(18_22_58/0.12)]" : "text-muted hover:text-ink"
+              }`}
+            >
+              {label} <span className="text-muted">{count}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} featured={i === 0} />
+      <ul className="border-b border-rule">
+        {visible.map((project) => (
+          <ProjectRow key={project.slug} project={project} />
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

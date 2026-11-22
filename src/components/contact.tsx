@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+
 import { useLocale } from "@/components/locale-provider";
 import { social } from "@/data/portfolio";
 import { WhatsAppIcon } from "@/components/brand-icons";
@@ -54,47 +54,39 @@ export function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-7xl px-4 py-16 sm:py-24 lg:px-6">
-      <div className="flex items-baseline gap-3 border-t border-ink pt-3 font-code text-xs text-muted">
-        <span className="text-ink">06</span>
-        <span>{t.contactKicker}</span>
-      </div>
-
-      <div className="mt-8 grid gap-14 lg:grid-cols-12 lg:gap-8">
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
-          <h2 className="font-display text-[2.6rem] leading-[1.02] font-light tracking-[-0.03em] text-ink sm:text-6xl">
+          <h2 className="type-tight font-display text-[3rem] leading-[0.92] font-bold text-ink sm:text-7xl">
             {t.contactTitle}
           </h2>
-          <p className="mt-6 max-w-md text-base leading-7 text-ink-soft">{t.contactLead}</p>
+          <p className="mt-6 max-w-md text-lg leading-8 text-ink-soft">{t.contactLead}</p>
 
-          <div className="mt-10">
-            <p className="font-code text-xs text-muted">{t.coords}</p>
-            <ul className="mt-3 space-y-2">
-              {social.emails.map((address) => (
-                <li key={address}>
-                  <a href={`mailto:${address}`} className="link-underline break-all font-display text-xl text-ink sm:text-2xl">
-                    {address}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={social.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-2 text-sm text-ink-soft hover:text-accent"
-                >
-                  <WhatsAppIcon size={16} /> {t.labelPhone}
-                  <ArrowUpRight size={13} aria-hidden />
+          <p className="mt-10 text-sm text-muted">{t.coords}</p>
+          <ul className="mt-3 space-y-3">
+            {social.emails.map((address) => (
+              <li key={address}>
+                <a href={`mailto:${address}`} className="link-underline text-xl font-semibold break-all text-ink sm:text-2xl">
+                  {address}
                 </a>
               </li>
-            </ul>
-            <p className="mt-8 font-code text-xs text-muted">
-              {social.location[locale]} — {t.remote}
-            </p>
-          </div>
+            ))}
+            <li>
+              <a
+                href={social.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-base font-medium text-ink transition-colors hover:text-accent"
+              >
+                <WhatsAppIcon size={18} /> {t.labelPhone}
+              </a>
+            </li>
+          </ul>
+          <p className="mt-8 text-sm text-muted">
+            {social.location[locale]}. {t.remote}.
+          </p>
         </div>
 
-        <form onSubmit={onSubmit} className="space-y-7 lg:col-span-6 lg:col-start-7 lg:pt-3">
+        <form onSubmit={onSubmit} className="space-y-5 rounded-[32px] bg-card p-6 sm:p-10 lg:col-span-6 lg:col-start-7">
           <input
             type="text"
             name="fax_number"
@@ -103,9 +95,9 @@ export function Contact() {
             className="sr-only"
             aria-hidden="true"
           />
-          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <label className="block">
-              <span className="block text-sm text-muted">{t.formName}</span>
+              <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.formName}</span>
               <input
                 id="contact-name"
                 name="name"
@@ -117,7 +109,7 @@ export function Contact() {
               />
             </label>
             <label className="block">
-              <span className="block text-sm text-muted">{t.formEmail}</span>
+              <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.formEmail}</span>
               <input
                 id="contact-email"
                 name="email"
@@ -130,7 +122,7 @@ export function Contact() {
             </label>
           </div>
           <label className="block">
-            <span className="block text-sm text-muted">{t.formType}</span>
+            <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.formType}</span>
             <select id="contact-type" name="projectType" required className="field cursor-pointer">
               {t.types.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -140,34 +132,32 @@ export function Contact() {
             </select>
           </label>
           <label className="block">
-            <span className="block text-sm text-muted">{t.formMessage}</span>
+            <span className="mb-1.5 block text-sm font-medium text-ink-soft">{t.formMessage}</span>
             <textarea
               id="contact-message"
               name="message"
               required
               minLength={5}
               maxLength={2000}
-              rows={4}
+              rows={5}
               className="field resize-y"
             />
           </label>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <button
-              type="submit"
-              disabled={pending}
-              className="btn-ink inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm px-7 py-3.5 text-sm font-medium disabled:cursor-wait disabled:opacity-60"
-            >
-              {pending ? "…" : t.formSubmit} <ArrowRight size={16} aria-hidden />
-            </button>
-            <p aria-live="polite" className="text-sm">
-              {status === "ok" ? (
-                <span className="text-ink">
-                  {t.formOk} {t.formOkLead}
-                </span>
-              ) : null}
-              {status === "error" ? <span className="text-accent-deep">{t.formError}</span> : null}
-            </p>
-          </div>
+          <button
+            type="submit"
+            disabled={pending}
+            className="btn-ink w-full cursor-pointer rounded-full px-7 py-4 text-base font-semibold disabled:cursor-wait disabled:opacity-60"
+          >
+            {pending ? "…" : t.formSubmit}
+          </button>
+          <p aria-live="polite" className="text-sm">
+            {status === "ok" ? (
+              <span className="text-ink">
+                {t.formOk} {t.formOkLead}
+              </span>
+            ) : null}
+            {status === "error" ? <span className="text-red-700">{t.formError}</span> : null}
+          </p>
         </form>
       </div>
       <ClientReviews />

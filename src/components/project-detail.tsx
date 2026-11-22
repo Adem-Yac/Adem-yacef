@@ -42,16 +42,16 @@ export function ProjectDetail({ slug }: { slug: string }) {
           <ArrowLeft size={16} /> {t.back}
         </button>
       </div>
-      <div className="mb-4 flex flex-wrap items-center gap-2 font-code text-xs text-muted">
+      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-muted">
         <span>
           {project.category[locale]}
         </span>
-        <span aria-hidden>—</span>
+        <span aria-hidden>,</span>
         <span>
           {project.kind === "mobile" ? t.kindMobile : t.kindWeb}
         </span>
       </div>
-      <h1 className="font-display text-5xl leading-[0.95] font-light tracking-[-0.035em] text-ink sm:text-6xl lg:text-7xl">
+      <h1 className="type-tight font-display text-6xl leading-[0.9] font-extrabold text-ink sm:text-7xl lg:text-8xl">
         {project.title[locale]}
       </h1>
       <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft">{project.description[locale]}</p>
@@ -61,7 +61,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ink inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-medium"
+            className="btn-ink inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-semibold"
           >
             {t.liveSite} <ArrowUpRight size={15} aria-hidden />
           </a>
@@ -73,7 +73,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
             rel="noopener noreferrer"
             className="link-underline text-sm font-medium text-ink"
           >
-            {t.github} ↗
+            {t.github}
           </a>
         ) : null}
       </div>
@@ -90,33 +90,33 @@ export function ProjectDetail({ slug }: { slug: string }) {
         <div className="space-y-10 lg:col-span-7">
           {project.context ? (
             <section>
-              <h2 className="font-display text-2xl text-ink italic">{t.contextLabel}</h2>
+              <h2 className="text-2xl font-bold text-ink">{t.contextLabel}</h2>
               <p className="mt-3 leading-7 text-ink-soft">{project.context[locale]}</p>
             </section>
           ) : (
             <section>
-              <h2 className="font-display text-2xl text-ink italic">{t.overview}</h2>
+              <h2 className="text-2xl font-bold text-ink">{t.overview}</h2>
               <p className="mt-3 leading-7 text-ink-soft">{project.summary[locale]}</p>
             </section>
           )}
           {project.challenge ? (
             <section>
-              <h2 className="font-display text-2xl text-ink italic">{t.challengeLabel}</h2>
+              <h2 className="text-2xl font-bold text-ink">{t.challengeLabel}</h2>
               <p className="mt-3 leading-7 text-ink-soft">{project.challenge[locale]}</p>
             </section>
           ) : null}
           {project.solution ? (
             <section>
-              <h2 className="font-display text-2xl text-ink italic">{t.solutionLabel}</h2>
+              <h2 className="text-2xl font-bold text-ink">{t.solutionLabel}</h2>
               <p className="mt-3 leading-7 text-ink-soft">{project.solution[locale]}</p>
             </section>
           ) : null}
           <section>
-            <h2 className="font-display text-2xl text-ink italic">{t.highlights}</h2>
+            <h2 className="text-2xl font-bold text-ink">{t.highlights}</h2>
             <ul className="mt-4 space-y-2">
               {project.highlights[locale].map((item) => (
-                <li key={item} className="flex items-start gap-3 border-t border-rule pt-2 text-ink-soft">
-                  <span className="text-accent" aria-hidden>—</span>
+                <li key={item} className="flex items-start gap-3 text-ink-soft">
+                  <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
                   {item}
                 </li>
               ))}
@@ -124,10 +124,10 @@ export function ProjectDetail({ slug }: { slug: string }) {
           </section>
           {project.modules ? (
             <section>
-              <h2 className="font-display text-2xl text-ink italic">{t.modulesLabel}</h2>
+              <h2 className="text-2xl font-bold text-ink">{t.modulesLabel}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.modules[locale].map((item) => (
-                  <span key={item} className="border border-rule px-3 py-1 text-sm text-ink-soft">
+                  <span key={item} className="rounded-full bg-card px-3 py-1 text-sm text-ink-soft">
                     {item}
                   </span>
                 ))}
@@ -136,31 +136,31 @@ export function ProjectDetail({ slug }: { slug: string }) {
           ) : null}
         </div>
         <aside className="lg:col-span-5">
-          <div className="border-t border-ink pt-6 lg:sticky lg:top-28">
+          <div className="rounded-[28px] bg-card p-6 sm:p-8 lg:sticky lg:top-28">
             <dl className="space-y-3">
               {meta.map((row) => (
                 <div key={row.label}>
-                  <dt className="font-code text-[11px] text-muted">{row.label}</dt>
+                  <dt className="text-sm text-muted">{row.label}</dt>
                   <dd className="mt-0.5 text-sm text-ink">{row.value}</dd>
                 </div>
               ))}
             </dl>
-            <h2 className="mt-8 font-code text-[11px] font-normal text-muted">{t.stackLabel}</h2>
+            <h2 className="mt-8 text-sm font-normal text-muted">{t.stackLabel}</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {project.stack.map((tag) => (
-                <span key={tag} className="font-code text-xs text-ink-soft">
+                <span key={tag} className="rounded-full bg-paper px-3 py-1 text-sm text-ink-soft">
                   {tag}
                 </span>
               ))}
             </div>
-            <h2 className="mt-8 font-code text-[11px] font-normal text-muted">{t.links}</h2>
+            <h2 className="mt-8 text-sm font-normal text-muted">{t.links}</h2>
             <div className="mt-3 space-y-2">
               {project.href ? (
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate font-code text-xs text-ink underline-offset-4 hover:text-accent hover:underline"
+                  className="block truncate text-sm text-ink underline-offset-4 hover:text-accent hover:underline"
                 >
                   {project.href}
                 </a>
@@ -170,7 +170,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
                   href={project.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate font-code text-xs text-ink underline-offset-4 hover:text-accent hover:underline"
+                  className="block truncate text-sm text-ink underline-offset-4 hover:text-accent hover:underline"
                 >
                   {project.repo}
                 </a>

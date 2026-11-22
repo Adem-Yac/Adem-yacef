@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
-/* Warm paper + ink, one accent. No gradients, no glow. */
+/* Palette pulled from the logo: signal blue -> pulse violet on a pale screen white.
+   The gradient belongs to the wave only; everything else is flat. */
 :root {
-  --paper: #f3efe7;
-  --paper-2: #e9e3d7;
-  --card: #fbf9f4;
-  --ink: #1e1c19;
-  --ink-soft: #3d3934;
-  --muted: #6e675d;
-  --rule: #d6cdbd;
-  --accent: #b0451f;
-  --accent-deep: #8c3515;
+  --paper: #eef1fa;
+  --paper-2: #e3e8f7;
+  --card: #ffffff;
+  --ink: #12163a;
+  --ink-soft: #2e3460;
+  --muted: #5b6390;
+  --rule: #cdd4ee;
+  --accent: #2f6bff;
+  --accent-deep: #1d4fd6;
+  --violet: #8b5cf6;
 }
 
 @theme inline {
@@ -23,9 +25,9 @@
   --color-rule: var(--rule);
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-geist);
-  --font-code: var(--font-geist-mono);
+  --color-violet: var(--violet);
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-bricolage);
 }
 
 html {
@@ -43,18 +45,6 @@ body {
   font-family: var(--font-body), system-ui, sans-serif;
   overflow-x: hidden;
   max-width: 100%;
-  font-feature-settings: "ss01", "cv11";
-}
-
-/* Paper grain, sits above everything but never catches clicks. */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  pointer-events: none;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 h1,
@@ -68,32 +58,25 @@ p {
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--accent);
+  color: #fff;
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
-.link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 100% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.25s ease, color 0.2s ease;
-}
-
-.link-underline:hover {
-  background-size: 0% 1px;
-  background-position: 100% 100%;
+/* Condensed cut of Bricolage for the big name and section titles. */
+.type-tight {
+  font-variation-settings: "wdth" 75, "opsz" 96;
+  letter-spacing: -0.02em;
 }
 
 .btn-ink {
   background: var(--ink);
-  color: var(--paper);
+  color: #fff;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
@@ -105,20 +88,44 @@ p {
   transform: translateY(1px);
 }
 
+.link-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.link-underline:hover {
+  color: var(--accent);
+}
+
+/* Wave underline drawn on hover: the logo's signal, reused as the one interactive motif. */
+.wave-underline path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .wave-underline path,
+.group:focus-visible .wave-underline path {
+  stroke-dashoffset: 0;
+}
+
 .field {
   width: 100%;
-  border: 0;
-  border-bottom: 1px solid var(--rule);
-  background: transparent;
-  padding: 0.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: var(--card);
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   color: var(--ink);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .field:focus {
-  border-bottom-color: var(--ink);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgb(47 107 255 / 0.14);
 }
 
 .field:focus-visible {
@@ -131,5 +138,8 @@ p {
   }
   * {
     transition: none !important;
+  }
+  .wave-underline path {
+    stroke-dashoffset: 0;
   }
 }
