@@ -1,13 +1,9 @@
 "use client";
 
 import { useLocale } from "@/components/locale-provider";
+import { CodeCard } from "@/components/code-card";
 import { SignalWave } from "@/components/signal-wave";
 import { social } from "@/data/portfolio";
-
-const facts = {
-  fr: [["Mobile", "Flutter, Dart"], ["Web", "React, Next.js"], ["Back-end", "Laravel, PHP"], ["Données", "MySQL, Firebase"]],
-  en: [["Mobile", "Flutter, Dart"], ["Web", "React, Next.js"], ["Back-end", "Laravel, PHP"], ["Data", "MySQL, Firebase"]],
-} as const;
 
 export function Hero() {
   const { t, locale } = useLocale();
@@ -43,14 +39,9 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <dl className="grid grid-cols-2 gap-x-8 gap-y-6 self-end lg:col-span-5 lg:col-start-8">
-          {facts[locale].map(([label, value]) => (
-            <div key={label}>
-              <dt className="text-sm text-muted">{label}</dt>
-              <dd className="mt-1 text-lg font-semibold text-ink">{value}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <CodeCard />
+        </div>
       </div>
     </section>
   );

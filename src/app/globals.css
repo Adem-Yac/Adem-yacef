@@ -28,6 +28,7 @@
   --color-violet: var(--violet);
   --font-display: var(--font-bricolage);
   --font-body: var(--font-bricolage);
+  --font-code: var(--font-jetbrains);
 }
 
 html {
