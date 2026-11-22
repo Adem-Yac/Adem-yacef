@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none"><title>AdemYac</title>
+  <defs><clipPath id="base"><rect x="0" y="0" width="64" height="54"/></clipPath></defs>
+  <path d="M22.6 46.5 L39 24.5" stroke="#7AA2FF" stroke-width="6" stroke-linecap="butt"/>
+  <g clip-path="url(#base)">
+    <path d="M7.5 58 L32 11 L56.5 58" stroke="#FFFFFF" stroke-width="8.5" stroke-linejoin="miter" stroke-miterlimit="10" fill="none"/>
+  </g></svg>
