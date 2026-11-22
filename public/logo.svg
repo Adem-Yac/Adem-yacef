@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>AdemYac</title>
+  <defs>
+    <linearGradient id="ay-g" x1="6" y1="12" x2="60" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2F6BFF"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <!-- The A: one rounded stroke, soft apex -->
+  <path d="M6 53 L20.6 15.6 Q23 10 25.4 15.6 L40 53" stroke="url(#ay-g)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Crossbar = the signal: calm inside the A, then it speaks -->
+  <path d="M13 40 H36.5 C38.6 40 38.8 28.5 41.4 28.5 C44 28.5 44.2 50.5 46.8 50.5 C49.3 50.5 49.5 32.5 51.9 32.5 C54.2 32.5 54.4 46 56.6 46 C58.4 46 58.7 40 60.6 40 H61" stroke="url(#ay-g)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

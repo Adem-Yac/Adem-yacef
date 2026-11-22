@@ -15,7 +15,7 @@ export function SiteHeader() {
     <header className="fixed top-0 right-0 left-0 z-50 bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 lg:px-6">
         <Link href="/#accueil" className="flex min-w-0 items-center gap-2.5">
-          <Image src="/logo.png" alt="" width={36} height={36} className="size-9 shrink-0 rounded-[10px] object-contain" />
+          <Image src="/logo.svg" alt="" width={40} height={40} className="size-10 shrink-0" priority />
           <span className="truncate text-xl font-bold tracking-tight text-ink">{brandName}</span>
         </Link>
 

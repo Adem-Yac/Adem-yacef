@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLocale } from "@/components/locale-provider";
 import { social } from "@/data/portfolio";
 
@@ -18,7 +19,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:pt-20 lg:px-6">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
-            <p className="max-w-sm text-base leading-7 text-white/70">{t.footerNote}</p>
+            <Image src="/logo.svg" alt="AdemYac" width={56} height={56} className="size-14" />
+            <p className="mt-5 max-w-sm text-base leading-7 text-white/70">{t.footerNote}</p>
             <a href={`mailto:${social.email}`} className="mt-6 inline-block text-2xl font-semibold break-all underline decoration-white/30 underline-offset-8 transition-colors hover:decoration-[#9db7ff]">
               {social.email}
             </a>

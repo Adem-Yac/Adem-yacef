@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   title: "AdemYac | Développeur Web & Mobile",
   description:
     "Portfolio d'AdemYac, développeur web et mobile : Flutter, Next.js, Laravel. Applications, e-commerce, livraison et SIRH.",
-  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({
