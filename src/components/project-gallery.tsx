@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { PhoneFrame } from "@/components/phone-frame";
 
 type ProjectGalleryProps = {
   shots: string[];
@@ -21,6 +22,22 @@ export function ProjectGallery({
   const [photo, setPhoto] = useState(0);
   const thumbsRef = useRef<HTMLDivElement>(null);
   const swipeX = useRef<number | null>(null);
+  // Which shots are full phone screens (tall), measured once so they can be framed without a flash.
+  const [tall, setTall] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    let alive = true;
+    for (const src of shots) {
+      const img = new Image();
+      img.onload = () => {
+        if (alive) setTall((t) => ({ ...t, [src]: img.naturalHeight / img.naturalWidth > 1.8 }));
+      };
+      img.src = src;
+    }
+    return () => {
+      alive = false;
+    };
+  }, [shots]);
   const count = shots.length;
   const current = shots[photo] ?? "";
   const caption = labels[photo];
@@ -99,14 +116,29 @@ export function ProjectGallery({
           }}
         >
           {/* Native img: Next/Image fill + stacked transforms was not swapping the visible shot. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            key={current}
-            src={current}
-            alt={caption || `${title} — ${photoOf} ${photo + 1}`}
-            draggable={false}
-            className="absolute inset-0 h-full w-full object-contain object-center p-2 select-none sm:p-4"
-          />
+          {tall[current] ? (
+            // Raw phone screenshots go inside the Figma phone frame; composed mockups show as-is.
+            <div key={current} className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+              <PhoneFrame className="h-full">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={current}
+                  alt={caption || `${title} — ${photoOf} ${photo + 1}`}
+                  draggable={false}
+                  className="absolute inset-0 h-full w-full object-cover object-top select-none"
+                />
+              </PhoneFrame>
+            </div>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={current}
+              src={current}
+              alt={caption || `${title} — ${photoOf} ${photo + 1}`}
+              draggable={false}
+              className="absolute inset-0 h-full w-full object-contain object-center p-2 select-none sm:p-4"
+            />
+          )}
 
           {count > 1 ? (
             <>

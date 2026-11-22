@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
+import { PhoneFrame } from "@/components/phone-frame";
 import { ProjectCover } from "@/components/project-cover";
 import { SectionHead } from "@/components/section-head";
 import { projects, type Project, type ProjectKind } from "@/data/portfolio";
@@ -31,11 +32,9 @@ function Screen({ project }: { project: Project }) {
 function Device({ project }: { project: Project }) {
   if (project.kind === "mobile") {
     return (
-      <div className="relative mx-auto aspect-[9/19] h-full rounded-[30px] bg-[#0d1030] p-[6px] shadow-[0_24px_40px_-22px_rgb(18_22_58/0.6)]">
-        <div className="relative h-full overflow-hidden rounded-[24px] bg-white [container-type:size]">
-          <Screen project={project} />
-        </div>
-      </div>
+      <PhoneFrame className="mx-auto h-full">
+        <Screen project={project} />
+      </PhoneFrame>
     );
   }
   // Only show a real domain; projects without a public URL show their name instead.
