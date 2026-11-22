@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 import { ProjectGallery } from "@/components/project-gallery";
+import { ProjectCover } from "@/components/project-cover";
 import { getProject } from "@/data/portfolio";
 
 export function ProjectDetail({ slug }: { slug: string }) {
@@ -77,6 +78,12 @@ export function ProjectDetail({ slug }: { slug: string }) {
           </a>
         ) : null}
       </div>
+
+      {shots.length === 0 ? (
+        <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[28px]">
+          <ProjectCover project={project} locale={locale} sizes="100vw" />
+        </div>
+      ) : null}
 
       <ProjectGallery
         shots={shots}

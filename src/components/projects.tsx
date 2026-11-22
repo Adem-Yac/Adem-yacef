@@ -1,47 +1,63 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
+import { ProjectCover } from "@/components/project-cover";
 import { SectionHead } from "@/components/section-head";
-import { WaveUnderline } from "@/components/wave-underline";
 import { projects, type Project, type ProjectKind } from "@/data/portfolio";
 
-function ProjectRow({ project }: { project: Project }) {
+// One project = one large card. On desktop the cards are sticky and pile up as you scroll,
+// each settling a little lower than the previous one so the stack stays visible.
+function DeckCard({ project, index, total }: { project: Project; index: number; total: number }) {
   const { locale, t } = useLocale();
+  const dark = project.kind === "mobile";
 
   return (
-    <li className="border-t border-rule">
+    <li className="md:sticky" style={{ top: `calc(6rem + ${index * 16}px)` }}>
       <Link
         href={`/projets/${project.slug}`}
-        className="group grid gap-5 py-8 sm:grid-cols-12 sm:items-center sm:gap-8 sm:py-10"
+        className={`group grid overflow-hidden rounded-[32px] shadow-[0_-10px_40px_-12px_rgb(18_22_58/0.25)] md:h-[min(76vh,620px)] md:grid-cols-12 ${
+          dark ? "bg-ink text-white" : "bg-card text-ink"
+        }`}
       >
-        <div className="sm:col-span-7">
-          <p className="text-sm text-muted">
-            {project.kind === "web" ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
-          </p>
-          <h3 className="type-tight mt-1 inline-block font-display text-4xl leading-none font-bold text-ink sm:text-6xl">
-            {project.title[locale]}
-            <WaveUnderline className="mt-2" />
-          </h3>
-          <p className="mt-4 max-w-lg text-base leading-7 text-ink-soft">{project.summary[locale]}</p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {project.stack.map((tag) => (
-              <li key={tag} className="rounded-full border border-rule px-3 py-1 text-sm text-ink-soft">
-                {tag}
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col gap-6 p-6 sm:p-10 md:col-span-5 md:justify-between">
+          <div className={`flex items-center justify-between text-sm ${dark ? "text-white/60" : "text-muted"}`}>
+            <span>
+              {project.kind === "web" ? t.kindWeb : t.kindMobile}
+              {project.year ? `, ${project.year}` : ""}
+            </span>
+            <span aria-label={`${index + 1} / ${total}`}>
+              {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            </span>
+          </div>
+          <div>
+            <h3 className="type-tight font-display text-5xl leading-[0.9] font-extrabold sm:text-7xl">{project.title[locale]}</h3>
+            <p className={`mt-2 text-base ${dark ? "text-[#9db7ff]" : "text-accent-deep"}`}>{project.category[locale]}</p>
+            <p className={`mt-5 max-w-md text-base leading-7 ${dark ? "text-white/75" : "text-ink-soft"}`}>{project.summary[locale]}</p>
+          </div>
+          <div>
+            <ul className="flex flex-wrap gap-2">
+              {project.stack.map((tag) => (
+                <li
+                  key={tag}
+                  className={`rounded-full border px-3 py-1 text-sm ${dark ? "border-white/20 text-white/80" : "border-rule text-ink-soft"}`}
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+            <span className="mt-6 inline-block text-base font-semibold underline decoration-2 underline-offset-[6px] transition-colors group-hover:text-accent">
+              {t.live}
+            </span>
+          </div>
         </div>
-        <div className="relative order-first aspect-[16/10] overflow-hidden rounded-[22px] bg-ink sm:order-none sm:col-span-5">
-          <Image
-            src={project.image}
-            alt={project.title[locale]}
-            fill
-            unoptimized
-            className="object-cover object-top transition duration-500 ease-out group-hover:scale-[1.03]"
-            sizes="(max-width: 640px) 100vw, 40vw"
+        <div className="relative order-first aspect-[16/10] overflow-hidden md:order-none md:col-span-7 md:aspect-auto">
+          <ProjectCover
+            project={project}
+            locale={locale}
+            sizes="(max-width: 768px) 100vw, 60vw"
+            className="transition duration-700 ease-out group-hover:scale-[1.03]"
           />
         </div>
       </Link>
@@ -83,9 +99,9 @@ export function Projects() {
         </div>
       </div>
 
-      <ul className="border-b border-rule">
-        {visible.map((project) => (
-          <ProjectRow key={project.slug} project={project} />
+      <ul className="space-y-6 md:space-y-10 md:pb-[10vh]">
+        {visible.map((project, i) => (
+          <DeckCard key={project.slug} project={project} index={i} total={visible.length} />
         ))}
       </ul>
     </section>

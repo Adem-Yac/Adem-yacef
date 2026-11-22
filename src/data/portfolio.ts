@@ -6,7 +6,7 @@ export type Project = {
   kind: ProjectKind;
   accent: "blue" | "indigo" | "violet";
   featured?: boolean;
-  image: string;
+  image?: string;
   preview?: string;
   gallery: string[];
   galleryLabels?: Record<Locale, string[]>;
@@ -36,6 +36,60 @@ export function getProject(slug: string) {
 }
 
 export const projects: Project[] = [
+  {
+    slug: "justsell",
+    kind: "mobile",
+    accent: "blue",
+    gallery: [],
+    year: "2026",
+    role: {
+      fr: "Mobile — app Flutter marchands (iOS et Android)",
+      en: "Mobile — Flutter merchant app (iOS and Android)",
+    },
+    context: {
+      fr: "JustSell est une plateforme e-commerce. Les marchands doivent gérer leur boutique en déplacement, pas seulement depuis un ordinateur.",
+      en: "JustSell is an e-commerce platform. Merchants need to run their shop on the go, not only from a computer.",
+    },
+    challenge: {
+      fr: "Une session marchand sécurisée (Google OAuth, 2FA, Cloudflare Turnstile) sur mobile, un démarrage rapide, et des écrans web existants à réutiliser sans tout réécrire.",
+      en: "A secure merchant session (Google OAuth, 2FA, Cloudflare Turnstile) on mobile, a fast startup, and existing web screens to reuse without rewriting everything.",
+    },
+    solution: {
+      fr: "Flutter feature-first avec Provider et GoRouter, client HTTP et session en stockage sécurisé, push Firebase, ponts WebView, modes démo / API et pipeline de build APK release et store Android.",
+      en: "Feature-first Flutter with Provider and GoRouter, HTTP client and session in secure storage, Firebase push, WebView bridges, demo / API modes and a release APK / Android store build pipeline.",
+    },
+    stack: ["Flutter", "Provider", "GoRouter", "Firebase", "OAuth / 2FA"],
+    title: { fr: "JustSell", en: "JustSell" },
+    category: { fr: "App marchands e-commerce", en: "E-commerce merchant app" },
+    summary: {
+      fr: "App Flutter pour les marchands JustSell : gérer sa boutique en déplacement, avec session sécurisée, 2FA et notifications push.",
+      en: "Flutter app for JustSell merchants: run the shop on the go, with a secure session, 2FA and push notifications.",
+    },
+    description: {
+      fr: "Application mobile iOS et Android pour les marchands JustSell. Connexion Google OAuth avec flux 2FA et Cloudflare Turnstile, session stockée de façon sécurisée, notifications Firebase, ponts WebView vers les écrans existants, démarrage optimisé et build release pour le store.",
+      en: "iOS and Android app for JustSell merchants. Google OAuth sign-in with a 2FA flow and Cloudflare Turnstile, securely stored session, Firebase notifications, WebView bridges to existing screens, optimised startup and a store release build.",
+    },
+    highlights: {
+      fr: [
+        "Architecture feature-first : Provider, GoRouter, client HTTP",
+        "Google OAuth, 2FA et Cloudflare Turnstile",
+        "Push Firebase et ponts WebView",
+        "Démarrage optimisé : cache auth, splash, modes démo / API",
+        "Pipeline de build APK release et store Android",
+      ],
+      en: [
+        "Feature-first architecture: Provider, GoRouter, HTTP client",
+        "Google OAuth, 2FA and Cloudflare Turnstile",
+        "Firebase push and WebView bridges",
+        "Optimised startup: auth cache, splash, demo / API modes",
+        "Release APK and Android store build pipeline",
+      ],
+    },
+    modules: {
+      fr: ["Connexion OAuth", "2FA", "Boutique", "Notifications", "WebView", "Build store"],
+      en: ["OAuth sign-in", "2FA", "Shop", "Notifications", "WebView", "Store build"],
+    },
+  },
   {
     slug: "souri",
     kind: "mobile",
@@ -183,7 +237,7 @@ export const projects: Project[] = [
       fr: "Flutter, Clean Architecture, BLoC, go_router. APIs Ummah (Coran, hadiths, douas, prière), géolocalisation, notifications d’adhan, audio (takbir / adhan), Firebase Auth + Google Sign-In, prefetch hors-ligne.",
       en: "Flutter, clean architecture, BLoC, go_router. Ummah APIs (Quran, hadiths, duas, prayer), geolocation, adhan notifications, audio (takbir / adhan), Firebase Auth + Google Sign-In, offline prefetch.",
     },
-    stack: ["Flutter", "Firebase", "BLoC", "Clean Architecture"],
+    stack: ["Flutter", "Bloc / Cubit", "Firebase Auth", "Firestore", "Google Sign-In"],
     title: { fr: "Noor Al Iman", en: "Noor Al Iman" },
     category: { fr: "Application spirituelle", en: "Spiritual app" },
     summary: {
@@ -200,12 +254,14 @@ export const projects: Project[] = [
         "Horaires de prière et adhan",
         "Hadiths et douas par catégorie",
         "FR / EN / AR et prefetch hors-ligne",
+        "Mode sombre, RTL et audio natif Android (adhan / takbir)",
       ],
       en: [
         "Quran reader + tafsir",
         "Prayer times and adhan",
         "Hadiths and duas by category",
         "FR / EN / AR and offline prefetch",
+        "Dark mode, RTL and native Android audio (adhan / takbir)",
       ],
     },
     modules: {
@@ -435,7 +491,7 @@ export const projects: Project[] = [
       fr: "Backend Laravel 11 + Vue 3 (Pinia, i18n FR/EN/AR, dark mode), API Sanctum, MySQL, Docker. Apps Flutter par rôle : connexion, accueil livreur (solde, en attente / en cours / livrés / retours), colis, fiche boutique, profil, et espace commerce (solde magasin, nouveau colis).",
       en: "Laravel 11 + Vue 3 backend (Pinia, FR/EN/AR i18n, dark mode), Sanctum API, MySQL, Docker. Flutter apps per role: sign-in, courier home (balance, pending / in progress / delivered / returns), parcels, store detail, profile, and store space (shop balance, new parcel).",
     },
-    stack: ["Flutter", "Laravel", "Vue.js", "MySQL", "Docker"],
+    stack: ["Flutter", "Riverpod", "GoRouter", "Dio", "Laravel", "Vue.js", "MySQL"],
     title: { fr: "Kaizen", en: "Kaizen" },
     category: { fr: "Livraison multi-rôles", en: "Multi-role delivery" },
     summary: {
@@ -452,12 +508,18 @@ export const projects: Project[] = [
         "Suivi des colis et retours",
         "Soldes et frais du mois",
         "Backend Laravel + Vue, i18n FR/EN/AR",
+        "Scan QR, carte, portefeuille et transactions",
+        "Architecture feature-first : Riverpod, GoRouter, Dio, stockage sécurisé",
+        "Démarrage optimisé (cache auth, splash) et APK release",
       ],
       en: [
         "Courier and store roles",
         "Parcel tracking and returns",
         "Monthly balances and fees",
         "Laravel + Vue backend, FR/EN/AR i18n",
+        "QR scan, map, wallet and transactions",
+        "Feature-first architecture: Riverpod, GoRouter, Dio, secure storage",
+        "Optimised startup (auth cache, splash) and release APK",
       ],
     },
     modules: {
@@ -698,7 +760,7 @@ export const projects: Project[] = [
       en: "Next.js App Router: landing, restaurant / courier pages, legal, sitemap. `GET /config/landing` for promo codes and contacts. Logos of validated restaurants. `POST /api/webhooks/meta` relay to the back office.",
     },
     href: "https://www.tibigoo.com",
-    stack: ["Next.js", "App Router", "SEO"],
+    stack: ["Next.js", "Firebase", "GA4", "Meta API", "Google Sheets ETL"],
     title: { fr: "Tibigoo", en: "Tibigoo" },
     category: { fr: "Marketplace restauration", en: "Food marketplace" },
     summary: {
@@ -710,12 +772,26 @@ export const projects: Project[] = [
       en: "The site presents meal booking, stores, and two funnels (become a restaurant, become a courier). The promo banner and footer come from the back office. Partner logos appear as soon as a validated restaurant uploads artwork. Live at tibigoo.com.",
     },
     highlights: {
-      fr: ["Site en ligne tibigoo.com", "Codes promo et contacts API", "Pages restaurateur et livreur", "SEO, sitemap et JSON-LD"],
-      en: ["Live at tibigoo.com", "Promo codes and contacts from the API", "Restaurant and courier pages", "SEO, sitemap and JSON-LD"],
+      fr: [
+        "Site en ligne tibigoo.com",
+        "Tracking GA4 / Firebase et événements analytics",
+        "Formulaires Firebase : newsletter, livreurs, restaurateurs",
+        "Automatisation réseaux sociaux : Meta API, webhooks, UTM",
+        "Pipeline ETL Firebase → Google Sheets pour les KPI et Power BI",
+        "Code organisé par domaines, 86 tests unitaires et checklist de recette",
+      ],
+      en: [
+        "Live at tibigoo.com",
+        "GA4 / Firebase tracking and analytics events",
+        "Firebase forms: newsletter, couriers, restaurants",
+        "Social automation: Meta API, webhooks, UTM",
+        "Firebase → Google Sheets ETL pipeline for KPIs and Power BI",
+        "Code split by domain, 86 unit tests and an acceptance checklist",
+      ],
     },
     modules: {
-      fr: ["Landing", "Restaurateur", "Livreur", "Codes promo", "Partenaires", "Contact / légal"],
-      en: ["Landing", "Restaurant", "Courier", "Promo codes", "Partners", "Contact / legal"],
+      fr: ["Landing", "Restaurateur", "Livreur", "Codes promo", "Analytics", "Social", "ETL KPI", "Contact / légal"],
+      en: ["Landing", "Restaurant", "Courier", "Promo codes", "Analytics", "Social", "KPI ETL", "Contact / legal"],
     },
   },
   {
@@ -792,6 +868,7 @@ export const projects: Project[] = [
         "Dashboard présence / retard / absence",
         "Fiches de paie PDF",
         "Congés, réclamations, shifts, primes",
+        "Rôles et permissions sécurisés",
       ],
       en: [
         "ZKTeco devices → attendance",
@@ -799,6 +876,7 @@ export const projects: Project[] = [
         "Attendance / late / absence dashboard",
         "PDF payslips",
         "Leave, claims, shifts, bonuses",
+        "Secure roles and permissions",
       ],
     },
     modules: {
@@ -1205,6 +1283,19 @@ export const tools = [
 ];
 
 export const experience = [
+  {
+    dates: { fr: "oct. 2026", en: "Oct 2026" },
+    kind: { fr: "Mission", en: "Contract" },
+    title: {
+      fr: "JustSell — App Flutter marchands",
+      en: "JustSell — Flutter merchant app",
+    },
+    body: {
+      fr: "Application mobile iOS et Android pour les marchands JustSell : session sécurisée, 2FA, push Firebase et build release store.",
+      en: "iOS and Android app for JustSell merchants: secure session, 2FA, Firebase push and store release build.",
+    },
+    tags: { fr: ["Flutter", "Provider", "Firebase"], en: ["Flutter", "Provider", "Firebase"] },
+  },
   {
     dates: { fr: "juil. 2026 – août 2026", en: "Jul 2026 – Aug 2026" },
     kind: { fr: "CDD / mission", en: "Contract" },

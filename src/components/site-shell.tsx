@@ -11,7 +11,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <LocaleProvider>
       <SignalDefs />
       <SiteHeader />
-      <div className="min-h-full overflow-x-hidden pt-16 sm:pt-20">{children}</div>
+      <div className="min-h-full overflow-x-clip pt-16 sm:pt-20">{children}</div>
       <SiteFooter />
     </LocaleProvider>
   );
