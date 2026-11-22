@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="1024" height="1024" fill="none"><title>AdemYac</title><rect width="64" height="64" rx="14" fill="#12163A"/><g transform="translate(9.6 9.6) scale(0.7)">
-  <defs><clipPath id="ay"><rect x="0" y="7" width="64" height="50"/></clipPath></defs>
-  <g clip-path="url(#ay)" stroke-linejoin="miter" stroke-miterlimit="12" fill="none">
-    <path id="lettre-A" d="M2.5 66 L22 7 L41.5 66" stroke="#FFFFFF" stroke-width="9"/>
-    <path id="barre-A" d="M13 41 H29" stroke="#FFFFFF" stroke-width="6"/>
-    <path id="bras-Y" d="M62 -2 L33.5 35.5" stroke="#7AA2FF" stroke-width="9"/>
-  </g></g></svg>
