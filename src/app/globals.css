@@ -133,7 +133,30 @@ p {
   outline: none;
 }
 
+/* Mobile project rail: the centred card is full size, its neighbours shrink and fade. */
+@supports (animation-timeline: view()) {
+  .rail-card {
+    animation: rail-focus linear both;
+    animation-timeline: view(inline);
+  }
+  @keyframes rail-focus {
+    0%,
+    100% {
+      transform: scale(0.9);
+      opacity: 0.55;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .rail-card {
+    animation: none;
+  }
+
   html {
     scroll-behavior: auto;
   }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
 import { PhoneFrame } from "@/components/phone-frame";
 import { ProjectCover } from "@/components/project-cover";
@@ -12,7 +12,7 @@ import { projects, type Project, type ProjectKind } from "@/data/portfolio";
 // Bento of real devices: web projects sit in a wide browser frame, mobile projects in a tall phone.
 // The frame holds a full-length screenshot that scrolls by itself when the card is hovered or focused.
 
-function Screen({ project }: { project: Project }) {
+function Screen({ project, play = false }: { project: Project; play?: boolean }) {
   const { locale } = useLocale();
   if (project.tile) {
     return (
@@ -22,18 +22,20 @@ function Screen({ project }: { project: Project }) {
         alt={project.title[locale]}
         loading="lazy"
         draggable={false}
-        className="absolute inset-x-0 top-0 min-h-full w-full select-none object-cover object-top transition-transform duration-[4500ms] ease-in-out group-hover:translate-y-[calc(-100%+100cqh)] group-focus-visible:translate-y-[calc(-100%+100cqh)] motion-reduce:transform-none"
+        className={`absolute inset-x-0 top-0 min-h-full w-full select-none object-cover object-top transition-transform duration-[4500ms] ease-in-out group-hover:translate-y-[calc(-100%+100cqh)] group-focus-visible:translate-y-[calc(-100%+100cqh)] motion-reduce:transform-none ${
+          play ? "translate-y-[calc(-100%+100cqh)]" : ""
+        }`}
       />
     );
   }
   return <ProjectCover project={project} locale={locale} sizes="(max-width: 640px) 100vw, 50vw" />;
 }
 
-function Device({ project }: { project: Project }) {
+function Device({ project, play = false }: { project: Project; play?: boolean }) {
   if (project.kind === "mobile") {
     return (
       <PhoneFrame className="mx-auto h-full">
-        <Screen project={project} />
+        <Screen project={project} play={play} />
       </PhoneFrame>
     );
   }
@@ -48,7 +50,7 @@ function Device({ project }: { project: Project }) {
         <span className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-xs text-muted ring-1 ring-rule">{host}</span>
       </div>
       <div className="relative flex-1 overflow-hidden [container-type:size]">
-        <Screen project={project} />
+        <Screen project={project} play={play} />
       </div>
     </div>
   );
@@ -59,7 +61,7 @@ function Tile({ project }: { project: Project }) {
   const web = project.kind === "web";
 
   return (
-    <li className={web ? "sm:col-span-2" : undefined}>
+    <li className={`hidden sm:block ${web ? "sm:col-span-2" : ""}`}>
       <Link
         href={`/projets/${project.slug}`}
         className="group flex h-full flex-col rounded-[28px] border border-rule bg-card p-3 transition-[border-color,box-shadow] duration-300 hover:border-accent/40 hover:shadow-[0_22px_44px_-26px_rgb(18_22_58/0.4)]"
@@ -80,6 +82,66 @@ function Tile({ project }: { project: Project }) {
         </div>
       </Link>
     </li>
+  );
+}
+
+// Phones: a swipeable "app rail" instead of ten stacked cards. The centred card is the live one:
+// its screenshot scrolls by itself, neighbours shrink (scroll-driven CSS where supported).
+function MobileRail({ items }: { items: Project[] }) {
+  const { locale, t } = useLocale();
+  const rail = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
+
+  const onScroll = () => {
+    const el = rail.current;
+    const first = el?.firstElementChild as HTMLElement | null;
+    if (!el || !first) return;
+    const step = first.offsetWidth + 12;
+    setActive(Math.min(items.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
+  };
+
+  return (
+    <div className="sm:hidden">
+      <div className="mb-4 flex items-center gap-3 text-sm text-muted" aria-live="polite">
+        <span className="font-semibold text-ink tabular-nums">
+          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+        </span>
+        <span className="h-1 flex-1 overflow-hidden rounded-full bg-paper-2" aria-hidden>
+          <span
+            className="block h-full rounded-full bg-gradient-to-r from-[#2f6bff] to-[#8b5cf6] transition-[width] duration-300"
+            style={{ width: `${((active + 1) / items.length) * 100}%` }}
+          />
+        </span>
+      </div>
+      <ul
+        ref={rail}
+        onScroll={onScroll}
+        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[9vw] pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {items.map((project, i) => {
+          const web = project.kind === "web";
+          return (
+            <li key={project.slug} className="rail-card w-[82vw] shrink-0 snap-center">
+              <Link href={`/projets/${project.slug}`} className="group block rounded-[26px] border border-rule bg-card p-2.5">
+                <div className={`rounded-[18px] bg-paper-2 ${web ? "h-[340px] p-3" : "h-[340px] px-3 pt-4 pb-3"}`}>
+                  <Device project={project} play={i === active} />
+                </div>
+                <div className="px-2 pt-4 pb-2">
+                  <p className="text-sm text-muted">
+                    {web ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
+                  </p>
+                  <h3 className="mt-1 text-xl font-bold text-ink">{project.title[locale]}</h3>
+                  <p className="mt-1 line-clamp-2 text-sm leading-6 text-ink-soft">{project.summary[locale]}</p>
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-deep">
+                    {t.live} <ArrowRight size={15} aria-hidden />
+                  </span>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 
@@ -124,7 +186,9 @@ export function Projects() {
         </div>
       </div>
 
-      <ul className="grid grid-flow-dense gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <MobileRail key={filter} items={visible} />
+
+      <ul className="mt-6 grid grid-flow-dense gap-5 sm:mt-0 sm:grid-cols-2 lg:grid-cols-4">
         {visible.map((project) => (
           <Tile key={project.slug} project={project} />
         ))}
