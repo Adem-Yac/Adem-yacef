@@ -29,15 +29,6 @@ export function About() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
-          {t.aboutCards.map((card) => (
-            <article key={card.title}>
-              <h3 className="text-xl font-semibold">{card.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">{card.body}</p>
-              <p className="mt-3 text-sm text-[#9db7ff]">{card.meta}</p>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
