@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
 import { PhoneFrame } from "@/components/phone-frame";
@@ -100,6 +100,13 @@ function MobileRail({ items }: { items: Project[] }) {
     setActive(Math.min(items.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
   };
 
+  const go = (dir: 1 | -1) =>
+    (rail.current?.children[active + dir] as HTMLElement | undefined)?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+
   return (
     <div className="sm:hidden">
       <div className="mb-4 flex items-center gap-3 text-sm text-muted" aria-live="polite">
@@ -113,34 +120,54 @@ function MobileRail({ items }: { items: Project[] }) {
           />
         </span>
       </div>
-      <ul
-        ref={rail}
-        onScroll={onScroll}
-        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[9vw] pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {items.map((project, i) => {
-          const web = project.kind === "web";
-          return (
-            <li key={project.slug} className="rail-card w-[82vw] shrink-0 snap-center">
-              <Link href={`/projets/${project.slug}`} className="group block rounded-[26px] border border-rule bg-card p-2.5">
-                <div className={`rounded-[18px] bg-paper-2 ${web ? "h-[340px] p-3" : "h-[340px] px-3 pt-4 pb-3"}`}>
-                  <Device project={project} play={i === active} />
-                </div>
-                <div className="px-2 pt-4 pb-2">
-                  <p className="text-sm text-muted">
-                    {web ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
-                  </p>
-                  <h3 className="mt-1 text-xl font-bold text-ink">{project.title[locale]}</h3>
-                  <p className="mt-1 line-clamp-2 text-sm leading-6 text-ink-soft">{project.summary[locale]}</p>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-deep">
-                    {t.live} <ArrowRight size={15} aria-hidden />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="relative">
+        <ul
+          ref={rail}
+          onScroll={onScroll}
+          className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[9vw] pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((project, i) => {
+            const web = project.kind === "web";
+            return (
+              <li key={project.slug} className="rail-card w-[82vw] shrink-0 snap-center">
+                <Link href={`/projets/${project.slug}`} className="group block rounded-[26px] border border-rule bg-card p-2.5">
+                  <div className={`rounded-[18px] bg-paper-2 ${web ? "h-[340px] p-3" : "h-[340px] px-3 pt-4 pb-3"}`}>
+                    <Device project={project} play={i === active} />
+                  </div>
+                  <div className="px-2 pt-4 pb-2">
+                    <p className="text-sm text-muted">
+                      {web ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
+                    </p>
+                    <h3 className="mt-1 text-xl font-bold text-ink">{project.title[locale]}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm leading-6 text-ink-soft">{project.summary[locale]}</p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-deep">
+                      {t.live} <ArrowRight size={15} aria-hidden />
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          disabled={active === 0}
+          aria-label={t.prev}
+          className="absolute top-[180px] -left-2 z-10 grid size-10 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-emerald-500 text-white shadow-[0_6px_16px_-4px_rgb(16_185_129/0.6)] ring-2 ring-white transition-opacity disabled:pointer-events-none disabled:opacity-0"
+        >
+          <ArrowLeft size={20} aria-hidden className="swipe-hint" />
+        </button>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          disabled={active === items.length - 1}
+          aria-label={t.next}
+          className="absolute top-[180px] -right-2 z-10 grid size-10 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-emerald-500 text-white shadow-[0_6px_16px_-4px_rgb(16_185_129/0.6)] ring-2 ring-white transition-opacity disabled:pointer-events-none disabled:opacity-0"
+        >
+          <ArrowRight size={20} aria-hidden className="swipe-hint" />
+        </button>
+      </div>
     </div>
   );
 }

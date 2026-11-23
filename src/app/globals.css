@@ -167,3 +167,13 @@ p {
     stroke-dashoffset: 0;
   }
 }
+
+/* Mobile project rail: nudge the "swipe" hint so phone users see the cards slide sideways. */
+@keyframes swipe-nudge {
+  0%, 60%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .swipe-hint { animation: swipe-nudge 2.4s ease-in-out infinite; }
+}
