@@ -120,53 +120,52 @@ function MobileRail({ items }: { items: Project[] }) {
           />
         </span>
       </div>
-      <ul
-        ref={rail}
-        onScroll={onScroll}
-        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[9vw] pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {items.map((project, i) => {
-          const web = project.kind === "web";
-          return (
-            <li key={project.slug} className="rail-card w-[82vw] shrink-0 snap-center">
-              <Link href={`/projets/${project.slug}`} className="group block rounded-[26px] border border-rule bg-card p-2.5">
-                <div className={`rounded-[18px] bg-paper-2 ${web ? "h-[340px] p-3" : "h-[340px] px-3 pt-4 pb-3"}`}>
-                  <Device project={project} play={i === active} />
-                </div>
-                <div className="px-2 pt-4 pb-2">
-                  <p className="text-sm text-muted">
-                    {web ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
-                  </p>
-                  <h3 className="mt-1 text-xl font-bold text-ink">{project.title[locale]}</h3>
-                  <p className="mt-1 line-clamp-2 text-sm leading-6 text-ink-soft">{project.summary[locale]}</p>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-deep">
-                    {t.live} <ArrowRight size={15} aria-hidden />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="mt-4 flex items-center justify-between gap-3">
+      <div className="relative">
+        <ul
+          ref={rail}
+          onScroll={onScroll}
+          className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[9vw] pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((project, i) => {
+            const web = project.kind === "web";
+            return (
+              <li key={project.slug} className="rail-card w-[82vw] shrink-0 snap-center">
+                <Link href={`/projets/${project.slug}`} className="group block rounded-[26px] border border-rule bg-card p-2.5">
+                  <div className={`rounded-[18px] bg-paper-2 ${web ? "h-[340px] p-3" : "h-[340px] px-3 pt-4 pb-3"}`}>
+                    <Device project={project} play={i === active} />
+                  </div>
+                  <div className="px-2 pt-4 pb-2">
+                    <p className="text-sm text-muted">
+                      {web ? t.kindWeb : t.kindMobile}, {project.category[locale].toLowerCase()}
+                    </p>
+                    <h3 className="mt-1 text-xl font-bold text-ink">{project.title[locale]}</h3>
+                    <p className="mt-1 line-clamp-2 text-sm leading-6 text-ink-soft">{project.summary[locale]}</p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-deep">
+                      {t.live} <ArrowRight size={15} aria-hidden />
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
         <button
           type="button"
           onClick={() => go(-1)}
           disabled={active === 0}
-          className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity disabled:cursor-default disabled:opacity-35"
+          aria-label={t.prev}
+          className="absolute top-[180px] -left-2 z-10 grid size-10 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-emerald-500 text-white shadow-[0_6px_16px_-4px_rgb(16_185_129/0.6)] ring-2 ring-white transition-opacity disabled:pointer-events-none disabled:opacity-0"
         >
-          <ArrowLeft size={16} aria-hidden /> {t.prev}
+          <ArrowLeft size={20} aria-hidden className="swipe-hint" />
         </button>
-        <span className="swipe-hint inline-flex items-center gap-1 text-xs font-medium text-muted" aria-hidden>
-          <ArrowLeft size={13} /> {t.swipeHint} <ArrowRight size={13} />
-        </span>
         <button
           type="button"
           onClick={() => go(1)}
           disabled={active === items.length - 1}
-          className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity disabled:cursor-default disabled:opacity-35"
+          aria-label={t.next}
+          className="absolute top-[180px] -right-2 z-10 grid size-10 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-emerald-500 text-white shadow-[0_6px_16px_-4px_rgb(16_185_129/0.6)] ring-2 ring-white transition-opacity disabled:pointer-events-none disabled:opacity-0"
         >
-          {t.next} <ArrowRight size={16} aria-hidden />
+          <ArrowRight size={20} aria-hidden className="swipe-hint" />
         </button>
       </div>
     </div>
