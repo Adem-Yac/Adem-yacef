@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
 import { PhoneFrame } from "@/components/phone-frame";
@@ -154,18 +154,18 @@ function MobileRail({ items }: { items: Project[] }) {
           onClick={() => go(-1)}
           disabled={active === 0}
           aria-label={t.prev}
-          className="absolute top-[180px] -left-2 z-10 grid size-10 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-emerald-500 text-white shadow-[0_6px_16px_-4px_rgb(16_185_129/0.6)] ring-2 ring-white transition-opacity disabled:pointer-events-none disabled:opacity-0"
+          className="absolute top-[180px] -left-2 z-10 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-gradient-to-br from-[#2f6bff] to-[#8b5cf6] text-white shadow-[0_10px_22px_-8px_rgb(91_76_246/0.7)] ring-[3px] ring-white/90 transition-[opacity,transform] duration-200 active:scale-90 disabled:pointer-events-none disabled:opacity-0"
         >
-          <ArrowLeft size={20} aria-hidden className="swipe-hint" />
+          <ChevronLeft size={24} strokeWidth={2.5} aria-hidden className="nudge-left" />
         </button>
         <button
           type="button"
           onClick={() => go(1)}
           disabled={active === items.length - 1}
           aria-label={t.next}
-          className="absolute top-[180px] -right-2 z-10 grid size-10 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-emerald-500 text-white shadow-[0_6px_16px_-4px_rgb(16_185_129/0.6)] ring-2 ring-white transition-opacity disabled:pointer-events-none disabled:opacity-0"
+          className="absolute top-[180px] -right-2 z-10 grid size-11 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-gradient-to-br from-[#2f6bff] to-[#8b5cf6] text-white shadow-[0_10px_22px_-8px_rgb(91_76_246/0.7)] ring-[3px] ring-white/90 transition-[opacity,transform] duration-200 active:scale-90 disabled:pointer-events-none disabled:opacity-0"
         >
-          <ArrowRight size={20} aria-hidden className="swipe-hint" />
+          <ChevronRight size={24} strokeWidth={2.5} aria-hidden className="nudge-right" />
         </button>
       </div>
     </div>
