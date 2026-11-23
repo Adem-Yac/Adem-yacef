@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { useLocale } from "@/components/locale-provider";
 import { PhoneFrame } from "@/components/phone-frame";
@@ -100,6 +100,13 @@ function MobileRail({ items }: { items: Project[] }) {
     setActive(Math.min(items.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
   };
 
+  const go = (dir: 1 | -1) =>
+    (rail.current?.children[active + dir] as HTMLElement | undefined)?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+
   return (
     <div className="sm:hidden">
       <div className="mb-4 flex items-center gap-3 text-sm text-muted" aria-live="polite">
@@ -141,6 +148,27 @@ function MobileRail({ items }: { items: Project[] }) {
           );
         })}
       </ul>
+      <div className="mt-4 flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          disabled={active === 0}
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity disabled:cursor-default disabled:opacity-35"
+        >
+          <ArrowLeft size={16} aria-hidden /> {t.prev}
+        </button>
+        <span className="swipe-hint inline-flex items-center gap-1 text-xs font-medium text-muted" aria-hidden>
+          <ArrowLeft size={13} /> {t.swipeHint} <ArrowRight size={13} />
+        </span>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          disabled={active === items.length - 1}
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity disabled:cursor-default disabled:opacity-35"
+        >
+          {t.next} <ArrowRight size={16} aria-hidden />
+        </button>
+      </div>
     </div>
   );
 }
