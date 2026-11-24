@@ -122,12 +122,12 @@ export function ProjectGallery({
           {current.includes("/screen-") && !tall[current] ? (
             // Raw web page captures go inside a browser window, top-aligned like a real page.
             <div key={current} className="absolute inset-0 flex items-center justify-center p-3 sm:p-8">
-              <div className="flex max-h-full w-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_24px_48px_-18px_rgb(11_16_38/0.35)] ring-1 ring-rule">
-                <div className="flex h-8 shrink-0 items-center gap-1.5 border-b border-rule bg-[#f6f7fc] px-3">
+              <div className="flex max-h-full w-full flex-col overflow-hidden rounded-xl bg-card shadow-[0_24px_48px_-18px_rgb(11_16_38/0.35)] ring-1 ring-rule">
+                <div className="flex h-8 shrink-0 items-center gap-1.5 border-b border-rule bg-paper-2 px-3">
                   <span className="size-2.5 rounded-full bg-[#ff5f57]" aria-hidden />
                   <span className="size-2.5 rounded-full bg-[#febc2e]" aria-hidden />
                   <span className="size-2.5 rounded-full bg-[#28c840]" aria-hidden />
-                  <span className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-xs text-muted ring-1 ring-rule">{host}</span>
+                  <span className="mx-auto truncate rounded-md bg-card px-3 py-0.5 text-xs text-muted ring-1 ring-rule">{host}</span>
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

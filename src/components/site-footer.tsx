@@ -15,7 +15,7 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="w-full bg-ink text-white">
+    <footer className="w-full bg-slab text-white">
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-8 sm:pt-20 lg:px-6">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">

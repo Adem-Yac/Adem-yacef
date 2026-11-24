@@ -156,7 +156,7 @@ export function Contact() {
                 {t.formOk} {t.formOkLead}
               </span>
             ) : null}
-            {status === "error" ? <span className="text-red-700">{t.formError}</span> : null}
+            {status === "error" ? <span className="text-red-700 dark:text-red-400">{t.formError}</span> : null}
           </p>
         </form>
       </div>

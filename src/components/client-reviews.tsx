@@ -88,13 +88,13 @@ export function ClientReviews() {
               <button
                 type="submit"
                 disabled={pending}
-                className="cursor-pointer rounded-full border-2 border-ink px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-white disabled:cursor-wait disabled:opacity-60"
+                className="cursor-pointer rounded-full border-2 border-ink px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-paper disabled:cursor-wait disabled:opacity-60"
               >
                 {pending ? "…" : t.reviewSubmit}
               </button>
               <p aria-live="polite" className="mt-3 text-sm">
                 {status === "ok" ? <span className="text-ink">{t.reviewOk}</span> : null}
-                {status === "error" ? <span className="text-red-700">{t.reviewError}</span> : null}
+                {status === "error" ? <span className="text-red-700 dark:text-red-400">{t.reviewError}</span> : null}
               </p>
             </div>
           </form>
