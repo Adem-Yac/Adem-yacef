@@ -3,9 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useLocale } from "@/components/locale-provider";
 import { brandName } from "@/data/portfolio";
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const next = root.dataset.theme === "dark" ? "light" : "dark";
+  root.dataset.theme = next;
+  try {
+    localStorage.setItem("theme", next);
+  } catch {}
+}
 
 export function SiteHeader() {
   const { t, locale, setLocale } = useLocale();
@@ -13,10 +22,11 @@ export function SiteHeader() {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 lg:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:h-20 sm:gap-4 lg:px-6">
         <Link href="/#accueil" className="flex min-w-0 items-center gap-2.5">
-          <Image src="/logo-mark.png" alt="" width={40} height={40} className="size-10 shrink-0" priority />
-          <span className="truncate text-xl font-bold tracking-tight text-ink">{brandName}</span>
+          <Image src="/logo-mark.png" alt="" width={40} height={40} className="size-10 shrink-0 dark:hidden" priority />
+          <Image src="/logo-mark-light.png" alt="" width={40} height={40} className="hidden size-10 shrink-0 dark:block" />
+          <span className="truncate text-lg font-bold tracking-tight text-ink max-[359px]:hidden sm:text-xl">{brandName}</span>
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full bg-card/70 p-1 lg:flex" aria-label="Navigation">
@@ -41,13 +51,23 @@ export function SiteHeader() {
                 aria-pressed={locale === code}
                 onClick={() => setLocale(code)}
                 className={`cursor-pointer rounded-full px-3 py-1.5 font-medium transition-colors ${
-                  locale === code ? "bg-ink text-white" : "text-muted hover:text-ink"
+                  locale === code ? "bg-ink text-paper" : "text-muted hover:text-ink"
                 }`}
               >
                 {code.toUpperCase()}
               </button>
             ))}
           </div>
+          <button
+            type="button"
+            aria-label={locale === "fr" ? "Changer de thème (clair / sombre)" : "Toggle theme (light / dark)"}
+            onClick={toggleTheme}
+            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-ink transition-colors hover:bg-card/70"
+          >
+            {/* ponytail: icon follows the html attribute via CSS, so no React state or hydration mismatch. */}
+            <Moon size={20} className="dark:hidden" aria-hidden />
+            <Sun size={20} className="hidden dark:block" aria-hidden />
+          </button>
           <button
             type="button"
             className="inline-flex size-11 cursor-pointer items-center justify-center text-ink lg:hidden"

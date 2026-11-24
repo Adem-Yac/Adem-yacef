@@ -37,8 +37,18 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
+      data-theme="light"
+      suppressHydrationWarning
       className={`${display.variable} ${code.variable} h-full antialiased`}
     >
+      <head>
+        {/* Applies the saved theme (or the system one) before first paint, so there is no flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="min-h-full bg-paper font-body text-ink">
         <SiteShell>{children}</SiteShell>
       </body>

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Theme is set on <html data-theme> by the inline script in layout.tsx (saved choice, else system). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* Palette pulled from the logo: signal blue -> pulse violet on a pale screen white.
    The gradient belongs to the wave only; everything else is flat. */
 :root {
@@ -13,6 +16,30 @@
   --accent: #2f6bff;
   --accent-deep: #1d4fd6;
   --violet: #8b5cf6;
+  /* Dark blocks (about, footer, contact card) that stay dark in both themes. */
+  --slab: #12163a;
+  --slab-hover: #1b2050;
+  --btn: var(--ink);
+  --btn-hover: var(--accent-deep);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #0b0e24;
+  --paper-2: #121635;
+  --card: #161a3d;
+  --ink: #e9ecfb;
+  --ink-soft: #c4c9ea;
+  --muted: #959cc6;
+  --rule: #2a3062;
+  --accent: #6b95ff;
+  --accent-deep: #4f7dff;
+  --violet: #a78bfa;
+  --slab: #181d4a;
+  --slab-hover: #20265a;
+  --btn: #2f6bff;
+  --btn-hover: #1d4fd6;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -26,6 +53,8 @@
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-violet: var(--violet);
+  --color-slab: var(--slab);
+  --color-slab-hover: var(--slab-hover);
   --font-display: var(--font-bricolage);
   --font-body: var(--font-bricolage);
   --font-code: var(--font-jetbrains);
@@ -76,13 +105,13 @@ p {
 }
 
 .btn-ink {
-  background: var(--ink);
+  background: var(--btn);
   color: #fff;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .btn-ink:hover {
-  background: var(--accent-deep);
+  background: var(--btn-hover);
 }
 
 .btn-ink:active {

@@ -6,7 +6,7 @@ import { SectionHead } from "@/components/section-head";
 export function About() {
   const { t } = useLocale();
   return (
-    <section id="a-propos" className="bg-ink text-white">
+    <section id="a-propos" className="bg-slab text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:py-24 lg:px-6">
         <div className="[&_h2]:text-white [&_p]:text-white/70">
           <SectionHead title={t.aboutTitle} />

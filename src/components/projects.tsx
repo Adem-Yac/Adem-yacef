@@ -42,12 +42,12 @@ function Device({ project, play = false }: { project: Project; play?: boolean })
   // Only show a real domain; projects without a public URL show their name instead.
   const host = project.href ? new URL(project.href).host : project.title.fr;
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-[14px] bg-white shadow-[0_24px_40px_-22px_rgb(18_22_58/0.5)] ring-1 ring-rule">
-      <div className="flex h-8 shrink-0 items-center gap-1.5 border-b border-rule bg-[#f6f7fc] px-3">
+    <div className="flex h-full flex-col overflow-hidden rounded-[14px] bg-card shadow-[0_24px_40px_-22px_rgb(18_22_58/0.5)] ring-1 ring-rule">
+      <div className="flex h-8 shrink-0 items-center gap-1.5 border-b border-rule bg-paper-2 px-3">
         <span className="size-2.5 rounded-full bg-[#ff5f57]" aria-hidden />
         <span className="size-2.5 rounded-full bg-[#febc2e]" aria-hidden />
         <span className="size-2.5 rounded-full bg-[#28c840]" aria-hidden />
-        <span className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-xs text-muted ring-1 ring-rule">{host}</span>
+        <span className="mx-auto truncate rounded-md bg-card px-3 py-0.5 text-xs text-muted ring-1 ring-rule">{host}</span>
       </div>
       <div className="relative flex-1 overflow-hidden [container-type:size]">
         <Screen project={project} play={play} />
@@ -222,13 +222,13 @@ export function Projects() {
         <li className="sm:col-span-2">
           <a
             href="#contact"
-            className="group flex h-full min-h-[220px] flex-col justify-between rounded-[28px] bg-ink p-8 text-white transition-colors hover:bg-[#1b2050]"
+            className="group flex h-full min-h-[220px] flex-col justify-between rounded-[28px] bg-slab p-8 text-white transition-colors hover:bg-slab-hover"
           >
             <div>
               <p className="type-tight font-display text-4xl leading-none font-extrabold sm:text-5xl">{t.contactTitle}</p>
               <p className="mt-4 max-w-md text-base leading-7 text-white/70">{t.contactLead}</p>
             </div>
-            <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-ink">
+            <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-[#12163a]">
               {t.ctaProject}
               <ArrowRight size={16} aria-hidden className="transition-transform duration-300 group-hover:translate-x-1" />
             </span>

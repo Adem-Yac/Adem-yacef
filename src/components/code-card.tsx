@@ -42,13 +42,13 @@ export function CodeCard() {
         </div>
       </div>
       {/* Floating stack chips, kept inside the card's box so they never overflow on phones. */}
-      <span className="absolute top-0 right-3 rounded-full bg-white px-4 py-1.5 font-code text-xs font-semibold text-ink shadow-[0_8px_20px_-8px_rgb(18_22_58/0.35)] sm:right-auto sm:left-[42%] sm:text-sm">
+      <span className="absolute top-0 right-3 rounded-full bg-card px-4 py-1.5 font-code text-xs font-semibold text-ink shadow-[0_8px_20px_-8px_rgb(18_22_58/0.35)] sm:right-auto sm:left-[42%] sm:text-sm">
         Flutter / Dart
       </span>
-      <span className="absolute top-1/2 right-0 hidden -translate-y-1/2 rounded-full bg-white px-4 py-1.5 font-code text-sm font-semibold text-ink shadow-[0_8px_20px_-8px_rgb(18_22_58/0.35)] sm:block lg:-right-4">
+      <span className="absolute top-1/2 right-0 hidden -translate-y-1/2 rounded-full bg-card px-4 py-1.5 font-code text-sm font-semibold text-ink shadow-[0_8px_20px_-8px_rgb(18_22_58/0.35)] sm:block lg:-right-4">
         React / Next.js
       </span>
-      <span className="absolute bottom-0 left-3 rounded-full bg-white px-4 py-1.5 font-code text-xs font-semibold text-ink shadow-[0_8px_20px_-8px_rgb(18_22_58/0.35)] sm:left-6 sm:text-sm">
+      <span className="absolute bottom-0 left-3 rounded-full bg-card px-4 py-1.5 font-code text-xs font-semibold text-ink shadow-[0_8px_20px_-8px_rgb(18_22_58/0.35)] sm:left-6 sm:text-sm">
         Laravel / PHP
       </span>
     </div>
