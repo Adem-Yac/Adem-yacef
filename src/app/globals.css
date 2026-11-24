@@ -168,12 +168,10 @@ p {
   }
 }
 
-/* Mobile project rail: nudge the "swipe" hint so phone users see the cards slide sideways. */
-@keyframes swipe-nudge {
-  0%, 60%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-5px); }
-  40% { transform: translateX(5px); }
-}
+/* Mobile project rail: each side arrow nudges toward its own direction a few times, then rests. */
+@keyframes nudge-left { 0%, 50%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } }
+@keyframes nudge-right { 0%, 50%, 100% { transform: translateX(0); } 25% { transform: translateX(4px); } }
 @media (prefers-reduced-motion: no-preference) {
-  .swipe-hint { animation: swipe-nudge 2.4s ease-in-out infinite; }
+  .nudge-left { animation: nudge-left 1.6s ease-in-out 0.6s 4; }
+  .nudge-right { animation: nudge-right 1.6s ease-in-out 0.6s 4; }
 }
