@@ -993,7 +993,7 @@ export const copy = {
       },
     ],
     skillsKicker: "Savoir-faire",
-    skillsTitle: "Ce que je sais faire",
+    skillsTitle: "Domaines d’expertise",
     skillsLead:
       "Quatre domaines où j’ai déjà livré en production.",
     toolsKicker: "Méthode",
@@ -1134,7 +1134,7 @@ export const copy = {
       },
     ],
     skillsKicker: "Craft",
-    skillsTitle: "What I work with",
+    skillsTitle: "Areas of expertise",
     skillsLead:
       "Four areas where I’ve already shipped to production.",
     toolsKicker: "Method",
