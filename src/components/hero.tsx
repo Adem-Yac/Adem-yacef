@@ -14,13 +14,13 @@ export function Hero() {
       <div className="mx-auto flex max-w-7xl px-4 lg:justify-end lg:px-6">
         <a
           href="#contact"
-          className="btn-ink inline-flex max-w-full items-center gap-2.5 rounded-3xl py-2.5 pr-5 pl-4 shadow-[0_18px_40px_-20px_rgb(18_22_58/0.7)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:gap-3 sm:rounded-full sm:py-3 sm:pr-6 sm:pl-5"
+          className="btn-ink inline-flex max-w-full items-center gap-2 rounded-full py-1.5 pr-3.5 pl-3 shadow-[0_10px_24px_-16px_rgb(18_22_58/0.7)] sm:shadow-[0_18px_40px_-20px_rgb(18_22_58/0.7)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:gap-3 sm:rounded-full sm:py-3 sm:pr-6 sm:pl-5"
         >
-          <span className="relative flex size-2.5 shrink-0" aria-hidden>
+          <span className="relative flex size-2 shrink-0 sm:size-2.5" aria-hidden>
             <span className="absolute inline-flex size-full rounded-full bg-[#28c840] opacity-70 motion-safe:animate-ping" />
-            <span className="relative inline-flex size-2.5 rounded-full bg-[#28c840] shadow-[0_0_10px_#28c840]" />
+            <span className="relative inline-flex size-2 rounded-full bg-[#28c840] shadow-[0_0_8px_#28c840] sm:size-2.5" />
           </span>
-          <span className="text-sm leading-snug font-semibold min-[375px]:text-[15px] sm:text-lg sm:whitespace-nowrap">{t.available}</span>
+          <span className="text-xs leading-snug font-semibold min-[375px]:text-[13px] sm:text-lg sm:whitespace-nowrap">{t.available}</span>
         </a>
       </div>
 
