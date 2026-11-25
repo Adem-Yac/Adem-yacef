@@ -3,26 +3,31 @@
 import { useLocale } from "@/components/locale-provider";
 import { CodeCard } from "@/components/code-card";
 import { SignalWave } from "@/components/signal-wave";
-import { social } from "@/data/portfolio";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
-  const { t, locale } = useLocale();
+  const { t } = useLocale();
 
   return (
     <section id="accueil" className="overflow-x-clip pt-8 pb-16 sm:pt-12 sm:pb-24">
-      {/* Availability badge: top right on desktop, in the empty space beside "Adem" (balances "Yac" below). */}
+      {/* Availability badge: top right on desktop, in the empty space beside "Adem" (balances "Yac" below).
+          Gradient ring = the logo / code-card gradient; green dot = the site's "ready" green. */}
       <div className="mx-auto flex max-w-7xl px-4 lg:justify-end lg:px-6">
         <a
           href="#contact"
-          className="inline-flex items-center gap-3 rounded-2xl border border-rule bg-card py-2.5 pr-5 pl-4 shadow-[0_14px_34px_-20px_rgb(18_22_58/0.5)] transition-colors hover:border-accent/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:rounded-full"
+          className="group rounded-full bg-gradient-to-r from-[#2f6bff] to-[#8b5cf6] p-[1.5px] shadow-[0_16px_36px_-18px_rgb(47_107_255/0.6)] transition-shadow hover:shadow-[0_18px_40px_-16px_rgb(139_92_246/0.7)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
-          <span className="relative flex size-3 shrink-0" aria-hidden>
-            <span className="absolute inline-flex size-full rounded-full bg-[#28c840] opacity-60 motion-safe:animate-ping" />
-            <span className="relative inline-flex size-3 rounded-full bg-[#28c840]" />
-          </span>
-          <span className="flex flex-wrap items-baseline gap-x-2 leading-snug">
-            <span className="text-[15px] font-semibold text-ink sm:text-lg">{t.available}</span>
-            <span className="text-sm text-muted sm:text-base">{social.location[locale]}</span>
+          <span className="flex items-center gap-3 rounded-full bg-card py-2.5 pr-4 pl-4 sm:pr-5">
+            <span className="relative flex size-2.5 shrink-0" aria-hidden>
+              <span className="absolute inline-flex size-full rounded-full bg-[#28c840] opacity-70 motion-safe:animate-ping" />
+              <span className="relative inline-flex size-2.5 rounded-full bg-[#28c840]" />
+            </span>
+            <span className="text-[15px] font-semibold whitespace-nowrap text-ink sm:text-lg">{t.available}</span>
+            <ArrowRight
+              aria-hidden
+              className="hidden size-4 text-accent transition-transform group-hover:translate-x-0.5 sm:block"
+              strokeWidth={2.4}
+            />
           </span>
         </a>
       </div>
