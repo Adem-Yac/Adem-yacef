@@ -10,10 +10,21 @@ export function Hero() {
 
   return (
     <section id="accueil" className="overflow-x-clip pt-8 pb-16 sm:pt-12 sm:pb-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <p className="text-sm text-muted">
-          {t.available}, {social.location[locale]}
-        </p>
+      {/* Availability badge: top right on desktop, in the empty space beside "Adem" (balances "Yac" below). */}
+      <div className="mx-auto flex max-w-7xl px-4 lg:justify-end lg:px-6">
+        <a
+          href="#contact"
+          className="inline-flex items-center gap-3 rounded-2xl border border-rule bg-card py-2.5 pr-5 pl-4 shadow-[0_14px_34px_-20px_rgb(18_22_58/0.5)] transition-colors hover:border-accent/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:rounded-full"
+        >
+          <span className="relative flex size-3 shrink-0" aria-hidden>
+            <span className="absolute inline-flex size-full rounded-full bg-[#28c840] opacity-60 motion-safe:animate-ping" />
+            <span className="relative inline-flex size-3 rounded-full bg-[#28c840]" />
+          </span>
+          <span className="flex flex-wrap items-baseline gap-x-2 leading-snug">
+            <span className="text-[15px] font-semibold text-ink sm:text-lg">{t.available}</span>
+            <span className="text-sm text-muted sm:text-base">{social.location[locale]}</span>
+          </span>
+        </a>
       </div>
 
       <h1 className="mt-4" aria-label={`AdemYac, ${t.headlineRole}`}>
