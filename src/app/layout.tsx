@@ -42,10 +42,10 @@ export default function RootLayout({
       className={`${display.variable} ${code.variable} h-full antialiased`}
     >
       <head>
-        {/* Applies the saved theme (or the system one) before first paint, so there is no flash. */}
+        {/* Light by default; dark only if the visitor chose it with the toggle (saved). Runs before first paint, so no flash. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t!=="dark")t="light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
           }}
         />
       </head>
