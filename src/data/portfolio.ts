@@ -42,9 +42,13 @@ export const projects: Project[] = [
     slug: "justsell",
     kind: "mobile",
     accent: "blue",
-    image: "/projects/justsell/cover.png",
+    image: "/projects/justsell/mockup-1.jpg",
     tile: "/projects/justsell/03-dashboard.jpg",
     gallery: [
+      "/projects/justsell/mockup-1.jpg",
+      "/projects/justsell/mockup-2.jpg",
+      "/projects/justsell/mockup-3.jpg",
+      "/projects/justsell/mockup-4.jpg",
       "/projects/justsell/01-welcome.jpg",
       "/projects/justsell/01-welcome-dark.jpg",
       "/projects/justsell/02-login.jpg",
@@ -53,8 +57,8 @@ export const projects: Project[] = [
       "/projects/justsell/05-justcall.jpg",
     ],
     galleryLabels: {
-      fr: ["Accueil", "Accueil en mode sombre", "Connexion", "Tableau de bord : ventes du jour par source", "Commandes", "JustCall : confirmation des commandes par téléphone"],
-      en: ["Welcome", "Welcome in dark mode", "Sign-in", "Dashboard: today's sales by source", "Orders", "JustCall: confirming orders by phone"],
+      fr: ["Maquette : couverture", "Maquette : Connexion sécurisée : Google OAuth et 2FA", "Maquette : Tableau de bord boutique en déplacement", "Maquette : Mode sombre et JustCall", "Accueil", "Accueil en mode sombre", "Connexion", "Tableau de bord : ventes du jour par source", "Commandes", "JustCall : confirmation des commandes par téléphone"],
+      en: ["Mockup: cover", "Mockup: Secure sign-in: Google OAuth and 2FA", "Mockup: Store dashboard on the go", "Mockup: Dark mode and JustCall", "Welcome", "Welcome in dark mode", "Sign-in", "Dashboard: today's sales by source", "Orders", "JustCall: confirming orders by phone"],
     },
     year: "2026",
     role: {
@@ -110,8 +114,12 @@ export const projects: Project[] = [
     tile: "/projects/souri/g1.png",
     kind: "mobile",
     accent: "blue",
-    image: "/projects/souri/cover.png",
+    image: "/projects/souri/mockup-1.jpg",
     gallery: [
+      "/projects/souri/mockup-1.jpg",
+      "/projects/souri/mockup-2.jpg",
+      "/projects/souri/mockup-3.jpg",
+      "/projects/souri/mockup-4.jpg",
       "/projects/souri/cover.png",
       "/projects/souri/g1.png",
       "/projects/souri/g2.png",
@@ -125,7 +133,7 @@ export const projects: Project[] = [
       "/projects/souri/g10.png",
     ],
     galleryLabels: {
-      fr: [
+      fr: ["Maquette : couverture", "Maquette : Les prises du jour en un tap", "Maquette : Traitements et rappels", "Maquette : Adhérence et séries", 
         "Cover : trio iPhone Souri",
         "Accueil : prochaine dose et prises du jour",
         "Onboarding : rappels doux",
@@ -138,7 +146,7 @@ export const projects: Project[] = [
         "Rappel local : Magnésium",
         "Traitements : actifs et stock",
       ],
-      en: [
+      en: ["Mockup: cover", "Mockup: Today's doses in one tap", "Mockup: Treatments and reminders", "Mockup: Adherence and streaks", 
         "Cover: Souri iPhone trio",
         "Home: next dose and today’s intakes",
         "Onboarding: gentle reminders",
@@ -292,8 +300,12 @@ export const projects: Project[] = [
     kind: "mobile",
     accent: "violet",
     featured: true,
-    image: "/projects/studyai/cover.png",
+    image: "/projects/studyai/mockup-1.jpg",
     gallery: [
+      "/projects/studyai/mockup-1.jpg",
+      "/projects/studyai/mockup-2.jpg",
+      "/projects/studyai/mockup-3.jpg",
+      "/projects/studyai/mockup-4.jpg",
       "/projects/studyai/cover.png",
       "/projects/studyai/g1.png",
       "/projects/studyai/g2.png",
@@ -308,7 +320,7 @@ export const projects: Project[] = [
       "/projects/studyai/g11.png",
     ],
     galleryLabels: {
-      fr: [
+      fr: ["Maquette : couverture", "Maquette : Chat Gemini sur le cours", "Maquette : Quiz depuis un PDF", "Maquette : Flashcards et progression", 
         "Cover : accueil iPhone",
         "Mockup : chat et quiz",
         "Mockup : PDF et flashcards",
@@ -322,7 +334,7 @@ export const projects: Project[] = [
         "Suivi et badges",
         "Profil et préférences IA",
       ],
-      en: [
+      en: ["Mockup: cover", "Mockup: Gemini chat on your course", "Mockup: Quizzes from a PDF", "Mockup: Flashcards and progress", 
         "Cover: home on iPhone",
         "Mockup: chat and quiz",
         "Mockup: PDF and flashcards",
@@ -380,8 +392,12 @@ export const projects: Project[] = [
     kind: "mobile",
     accent: "blue",
     featured: true,
-    image: "/projects/fintrack/cover.png",
+    image: "/projects/fintrack/mockup-1.jpg",
     gallery: [
+      "/projects/fintrack/mockup-1.jpg",
+      "/projects/fintrack/mockup-2.jpg",
+      "/projects/fintrack/mockup-3.jpg",
+      "/projects/fintrack/mockup-4.jpg",
       "/projects/fintrack/cover.png",
       "/projects/fintrack/g1.png",
       "/projects/fintrack/g2.png",
@@ -396,7 +412,7 @@ export const projects: Project[] = [
       "/projects/fintrack/g11.png",
     ],
     galleryLabels: {
-      fr: [
+      fr: ["Maquette : couverture", "Maquette : Tableau de bord et transactions", "Maquette : Budgets et objectifs d’épargne", "Maquette : Statistiques et taux de change", 
         "Cover : trio iPhone",
         "Mockup : tableau de bord sombre",
         "Splash : édition Algérie / DA",
@@ -410,7 +426,7 @@ export const projects: Project[] = [
         "Statistiques et devises",
         "Budgets et objectifs d’épargne",
       ],
-      en: [
+      en: ["Mockup: cover", "Mockup: Dashboard and transactions", "Mockup: Budgets and savings goals", "Mockup: Stats and live exchange rates", 
         "Cover: iPhone trio",
         "Mockup: dark dashboard",
         "Splash: Algeria / DZD edition",
@@ -644,8 +660,12 @@ export const projects: Project[] = [
     tile: "/projects/mecad/g1.png",
     kind: "web",
     accent: "indigo",
-    image: "/projects/mecad/cover.png",
+    image: "/projects/mecad/mockup-1.jpg",
     gallery: [
+      "/projects/mecad/mockup-1.jpg",
+      "/projects/mecad/mockup-2.jpg",
+      "/projects/mecad/mockup-3.jpg",
+      "/projects/mecad/mockup-4.jpg",
       "/projects/mecad/cover.png",
       "/projects/mecad/g1.png",
       "/projects/mecad/g2.png",
@@ -657,7 +677,7 @@ export const projects: Project[] = [
       "/projects/mecad/g8.png",
     ],
     galleryLabels: {
-      fr: [
+      fr: ["Maquette : couverture", "Maquette : Catalogue et catégories", "Maquette : Fiche produit et formats", "Maquette : Panier et checkout", 
         "Cover : accueil desktop et mobile",
         "Accueil : catalogue CNC",
         "Boutique",
@@ -668,7 +688,7 @@ export const projects: Project[] = [
         "Page MeCad",
         "Parcours utilisateur",
       ],
-      en: [
+      en: ["Mockup: cover", "Mockup: Catalog and categories", "Mockup: Product page with formats", "Mockup: Cart and checkout", 
         "Cover: home desktop and mobile",
         "Home: CNC catalog",
         "Store",
@@ -722,8 +742,12 @@ export const projects: Project[] = [
     slug: "tibigoo",
     kind: "web",
     accent: "violet",
-    image: "/projects/tibigoo/cover.png",
+    image: "/projects/tibigoo/mockup-1.jpg",
     gallery: [
+      "/projects/tibigoo/mockup-1.jpg",
+      "/projects/tibigoo/mockup-2.jpg",
+      "/projects/tibigoo/mockup-3.jpg",
+      "/projects/tibigoo/mockup-4.jpg",
       "/projects/tibigoo/cover.png",
       "/projects/tibigoo/g1.png",
       "/projects/tibigoo/g2.png",
@@ -732,7 +756,7 @@ export const projects: Project[] = [
       "/projects/tibigoo/screen-contact.png",
     ],
     galleryLabels: {
-      fr: [
+      fr: ["Maquette : couverture", "Maquette : Devenir restaurateur partenaire", "Maquette : Devenir livreur", "Maquette : Contact et contenu dynamique", 
         "Cover : laptop et mobile",
         "Mockup desktop : landing",
         "Mockup mobile",
@@ -740,7 +764,7 @@ export const projects: Project[] = [
         "Devenir livreur",
         "Contact",
       ],
-      en: [
+      en: ["Mockup: cover", "Mockup: Become a restaurant partner", "Mockup: Become a delivery driver", "Mockup: Contact and dynamic content", 
         "Cover: laptop and mobile",
         "Desktop mockup: landing",
         "Mobile mockup",
